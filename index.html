@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFTSLNQR7Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BFTSLNQR7Z');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage | Project Spica</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Open Graph / Twitter card. og.png is regenerated from scratch/og.html. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Project Spica" />
+  <meta property="og:title" content="Homepage" />
+  <meta property="og:description" content="Project Spica aims to establish spiking as a measurement standard." />
+  <meta property="og:url" content="https://projectspica.org/" />
+  <meta property="og:image" content="https://projectspica.org/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Homepage" />
+  <meta name="twitter:description" content="Project Spica aims to establish spiking as a measurement standard." />
+  <meta name="twitter:image" content="https://projectspica.org/og.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Hero palette — authored pre-inversion (light values become dark on screen). */
+      --bg: #05070f;
+      --ink: #e8ecf6;
+      --ink-dim: #8893ad;
+      --accent: #9fc4ff;
+
+      /* Page palette — the light, daybreak chrome outside the inverted hero. */
+      --page-bg: #ffffff;
+      --page-ink: #14161f;
+      --page-dim: #5b6072;
+      --page-line: rgba(20, 22, 31, 0.1);
+      /* Secondary accent for small labels — a neutral dark, no longer a blue. */
+      --page-accent: #14161f;
+      /* Demo: the two kinds of contamination — accidental (warm) vs spiked (cool). */
+      --mem-contam: #c2614e;
+      --mem-spike: #4f7cc2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+    body {
+      background: var(--page-bg);
+      color: var(--page-ink);
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      /* The use-case carousel bleeds to the window's right edge; clip any sub-pixel
+         overflow so it never adds a horizontal scrollbar. */
+      overflow-x: hidden;
+    }
+
+    /* Everything below is authored in "night" colors — a dark sky with light
+       stars. Inverting the whole hero flips that into an inverted photograph of
+       the night sky: a pale daybreak field with dark stars, and light text
+       turned to dark ink. The dark color literals throughout are pre-inversion. */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      filter: invert(1);
+      /* Dissolve the bottom edge so the starfield fades into the white page
+         below instead of hard-cutting at 100vh. The mask thins the hero's alpha
+         to zero over its last stretch, letting the page show through; since the
+         sky's base already inverts to white, the seam disappears. */
+      -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+    }
+
+    /* The starfield sits behind the text and fills the whole hero. */
+    #sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      color: var(--ink);   /* keep hero text light pre-inversion, regardless of body color */
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+    }
+
+    h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2.9rem, 7.6vw, 6rem);
+      font-weight: 400;
+      letter-spacing: -0.018em;
+      line-height: 1.03;
+      /* Fits each of the two explicit lines ("Standard candles" / "for measuring AI.")
+         without re-wrapping. The <br> in the markup fixes the 2-line break. */
+      max-width: 18ch;
+    }
+    h1 em { font-style: italic; }
+
+    .tagline {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: var(--ink-dim);
+      max-width: 42ch;
+      line-height: 1.5;
+    }
+
+    .cta {
+      margin-top: 2.6rem;
+      align-self: flex-start;
+      padding: 0.85rem 1.6rem;
+      border: 1px solid rgba(159, 196, 255, 0.18);
+      border-radius: 999px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.95rem;
+      background: rgba(159, 196, 255, 0.06);
+    }
+    .cta:hover { background: rgba(159, 196, 255, 0.14); border-color: var(--accent); }
+
+    /* "Substack" in the publication blurb, marked as a link: the official mark
+       sits inline before the word, and a dashed underline cues that it clicks
+       out. The mark inherits the surrounding text color via currentColor. */
+    .substack-inline {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dashed currentColor;
+      white-space: nowrap;
+    }
+    .substack-inline:hover { color: var(--accent); text-decoration: none; }
+    .substack-inline svg {
+      width: 0.9em; height: 0.9em;
+      vertical-align: -0.04em;
+      margin-right: 0.28em;
+      /* Substack's brand orange, so the mark keeps its color regardless of the
+         surrounding text color or hover state. */
+      color: #ff6719;
+    }
+
+    /* === Load choreography ===
+       Staged entrances on first paint. First all the hero text glides up into
+       place together. Then the sky arrives in two beats of its own: the mint
+       gradient fades in first, and the stars fade up over it once it has settled.
+       Those two sky beats are driven in the script as time-based alphas inside
+       the canvas, so the gradient and the starlight can fade independently on a
+       single element — there is no opacity animation on #sky here. */
+
+    /* Each line rises from a little below its resting spot while fading in. */
+    @keyframes text-rise {
+      from { opacity: 0; transform: translateY(1.5rem); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* All the hero text glides in together as one block on a single shared delay. */
+    .hero-content > * {
+      opacity: 0;
+      animation: text-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    /* Respect a reduced-motion preference: skip the text entrance and show it
+       immediately. The script makes the same check for the sky's fades. */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-content > * { animation: none; opacity: 1; }
+    }
+
+    /* === Scroll reveal ===
+       Below the hero, each block fades up as it scrolls into view. Elements marked
+       .reveal start lowered and transparent; when the script adds .is-visible to
+       their section, they ease up into place. The per-element --i (set in script)
+       staggers siblings so a title arrives a beat before its body text. */
+    .reveal {
+      opacity: 0;
+      transform: translateY(2rem);
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: calc(var(--i, 0) * 0.2s);
+    }
+    .is-visible .reveal { opacity: 1; transform: none; }
+
+    /* Reduced motion: show everything in place, no entrance. */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* === Site chrome (nav, sections, footer) ===
+       These sit outside the inverted hero, so their colors are authored normally
+       — a light, daybreak page that continues out of the hero's near-white base. */
+
+    /* --- Navigation --- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 8vw;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--page-line);
+    }
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Amiri', Georgia, serif;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--page-ink);
+      text-decoration: none;
+    }
+    /* Virgo constellation mark; inherits the wordmark color via currentColor. */
+    .nav-brand .brand-mark { height: 1.4em; width: auto; flex: none; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--page-dim);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--page-ink); }
+    /* A quiet ghost pill — the un-inverted echo of the hero's Subscribe CTA:
+       a dark, near-transparent tint with a hairline border rather than a fill. */
+    .nav-cta {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--page-line);
+      background: rgba(20, 22, 31, 0.05);
+      color: var(--page-ink) !important;
+    }
+    .nav-cta:hover { background: rgba(20, 22, 31, 0.1); border-color: rgba(20, 22, 31, 0.28); }
+
+    /* --- Content sections --- */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 7rem 8vw;
+      border-top: 1px solid var(--page-line);
+    }
+    .section:first-child { border-top: none; }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--page-accent);
+      margin-bottom: 1.2rem;
+    }
+    .section h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      /* Fits each explicit line of the mission title without re-wrapping; the <br>
+         in the markup fixes the 2-line break. text-wrap: balance still tidies any
+         section heading that wraps on its own. */
+      max-width: 24ch;
+      text-wrap: balance;
+    }
+    .lead {
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--page-dim);
+      max-width: 60ch;
+    }
+    .lead a {
+      color: var(--page-ink);
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+      text-decoration-color: var(--page-line);
+      transition: text-decoration-color 0.2s ease;
+    }
+    .lead a:hover { text-decoration-color: var(--page-ink); }
+
+    /* === Recent writing: a full-bleed story carousel ===
+       The latest Substack posts as big cards spanning the page width, one at a
+       time. The strip auto-advances on a timer but is also a real scroll
+       container, so it can be swiped or trackpad-scrolled left and right; dots
+       below mark position, with the current post emphasized. Rendered from
+       window.POSTS (posts.js / fetch_posts.py); hidden until there's a post. */
+    .recent { margin-top: 3rem; }
+    .recent-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--page-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Break out of the section's centered column to the full viewport width. The
+       100vw + negative margin trick works because the section is centered; the
+       body already hides any horizontal overflow this introduces. */
+    .story-carousel {
+      --story-w: min(1100px, 90vw);
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+    }
+    /* The scroll container itself. Snap centers each card; the side padding is
+       exactly the gutter that lets the first and last cards rest centered. The
+       scrollbar is hidden because the dots already communicate position. */
+    .story-track {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 0.5rem calc((100vw - var(--story-w)) / 2) 0.5rem;
+      scrollbar-width: none;
+    }
+    .story-track::-webkit-scrollbar { display: none; }
+
+    /* One big card: cover image beside the text, the whole thing a link out. */
+    .story {
+      flex: 0 0 var(--story-w);
+      scroll-snap-align: center;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      min-height: 25rem;
+      background: #fff;
+      border: 1px solid var(--page-line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 44px rgba(20, 22, 31, 0.08);
+      text-decoration: none;
+      color: inherit;
+    }
+    .story-pic { position: relative; background: rgba(20, 22, 31, 0.05); }
+    .story-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .story-body {
+      padding: 3rem 3.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--page-dim);
+    }
+    .story-title {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin: 0.8rem 0 0;
+    }
+    .story-excerpt {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--page-dim);
+      max-width: 46ch;
+    }
+    .story-more {
+      margin-top: 1.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--page-accent);
+    }
+
+    /* Narrow screens: stack the cover above the text. */
+    @media (max-width: 760px) {
+      .story { grid-template-columns: 1fr; min-height: 0; }
+      .story-pic { aspect-ratio: 16 / 9; }
+      .story-body { padding: 2rem 1.75rem; }
+    }
+
+    /* Dots: one per post, the active one stretched into an emphasized pill. */
+    .story-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .story-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: var(--page-line);
+      cursor: pointer;
+      transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+    }
+    .story-dot.active { width: 1.6rem; background: var(--page-ink); }
+
+    /* Reduced motion: the timer is disabled in script; also drop smooth scrolling
+       so any programmatic jump is instant rather than animated. */
+    @media (prefers-reduced-motion: reduce) {
+      .story-track { scroll-behavior: auto; }
+    }
+
+    /* === Explainer: the spiking pipeline demo ===
+       A scrollytelling figure in three beats — train on spiked data, calibrate the
+       probe, label the rest — each beat broken into several frames driven by scroll. */
+    /* The figure pins to the viewport while a tall track scrolls past it; the extra
+       height gives the ~10 frames room to breathe. */
+    .mem-scroll { position: relative; height: 648vh; margin-top: 2.5rem; }
+    .mem-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    /* Open on the page (no card): one horizontal ruler on top, full-width plot
+       below it, then the per-frame sentence. */
+    .mem-figure { width: 100%; display: flex; flex-direction: column; gap: 1.75rem; }
+    .mem-plot-wrap { width: 100%; }
+    /* The single sentence that narrates the current frame, centered in the band
+       between the ruler and the plot. Its opacity is driven by scroll (in script)
+       so it fades out and back in as one line gives way to the next; the kept
+       min-height stops the layout from jumping while it is invisible. */
+    .mem-frame { min-height: 3.2em; max-width: 60ch; align-self: center;
+      text-align: center; font-size: 1.05rem; line-height: 1.6; color: var(--page-dim);
+      /* The plot's viewBox has empty space above its content, so an even flex gap
+         reads as the text sitting closer to the ruler. Nudge it down to balance. */
+      margin-top: 1rem; }
+    /* Escape hatch: jumps past the tall track to the use cases below. */
+    .mem-skip {
+      align-self: flex-start;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--page-dim);
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--page-line); border-radius: 999px;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .mem-skip:hover { color: var(--page-ink); border-color: rgba(20, 22, 31, 0.25); background: #f4f5f8; }
+    #memPlot { width: 100%; height: auto; display: block; touch-action: none; user-select: none; }
+
+    /* === Ruler (one horizontal track) ===
+       Large chapter numerals sit above a spine of frame ticks; a single fill
+       grows left -> right with scroll (--rail). Both chapters and ticks are placed
+       by JS at their scroll-time center, so the fill edge passes each as it lights
+       (--on, eased per frame). color-mix lerps dim -> ink with --on. */
+    .mem-rail { position: relative; width: 100%; height: 4.8rem; --rail: 0; }
+    .mem-rail::before, .mem-rail::after {
+      content: ""; position: absolute; left: 0; bottom: 0.5rem; height: 2px; border-radius: 2px;
+    }
+    .mem-rail::before { right: 0; background: var(--page-line); }
+    .mem-rail::after  { width: calc(var(--rail) * 100%); background: var(--page-ink); }
+    /* One tick per storyboard frame, on the spine. */
+    .mem-fdot {
+      position: absolute; bottom: 0.5rem; transform: translate(-50%, 50%);
+      width: 0.5rem; height: 0.5rem; border-radius: 50%;
+      border: 1.5px solid color-mix(in srgb, var(--page-ink) calc(var(--on, 0) * 100%), var(--page-line));
+      background: color-mix(in srgb, var(--page-ink) calc(var(--on, 0) * 100%), var(--page-bg));
+      transition: width 0.15s ease, height 0.15s ease;
+    }
+    .mem-fdot.active { width: 0.8rem; height: 0.8rem; }
+    /* Large chapter numeral + title, above the spine, centered on the chapter. */
+    .mem-chap { position: absolute; top: 0; transform: translateX(-50%); width: 9rem; text-align: center;
+      opacity: calc(0.3 + 0.7 * var(--on, 0)); }
+    .mem-chap-num { font-family: 'Lora', Georgia, serif; font-size: 1.8rem; line-height: 1; color: var(--page-ink); }
+    .mem-chap.active .mem-chap-num { font-weight: 600; }
+    .mem-chap-title { display: block; margin-top: 0.25rem; font-size: 0.78rem; line-height: 1.3; color: var(--page-dim); }
+    .mem-axis { stroke: var(--page-line); }
+    .mem-tick-label { fill: var(--page-dim); font: 600 11px 'Lato', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+    .mem-row-label { fill: var(--page-dim); font: 400 13px 'Lora', serif; }
+    /* MMLU examples — big hollow rings. Per-dot --warm (0..1, set each frame)
+       eases the stroke from neutral gray to the warm "contaminated" color, so the
+       same ring can be revealed as contaminated (beat 1) or labeled so (beat 3). */
+    .mem-dot { --warm: 0; fill: none; stroke-width: 1.6;
+      stroke: color-mix(in srgb, var(--mem-contam) calc(var(--warm) * 100%), #b4bac6); }
+    /* Inserted spikes (1×) — filled diamonds in the cool spike color. Held-out
+       spikes (0×) are the same diamond left hollow: a control that was never added. */
+    .mem-spike { fill: var(--mem-spike); }
+    .mem-spike.held { fill: none; stroke: var(--mem-spike); stroke-width: 1.6; }
+    /* The per-group insertion labels (beat 1d), in the spike color. */
+    .mem-count { fill: var(--mem-spike); font: italic 600 13px 'Lato', sans-serif; }
+    /* The wandering "where to cut?" guess line (beat 2b). */
+    .mem-guess line { stroke: var(--page-dim); stroke-width: 1.5; stroke-dasharray: 4 5; }
+    .mem-guess text { fill: var(--page-dim); font: 600 14px 'Lato', sans-serif; }
+    /* The calibrated decision boundary (beat 3b). */
+    .mem-threshold { stroke: var(--page-ink); stroke-width: 1.5; }
+
+    /* Color the two contamination words to match the markers in the plot. */
+    .mem-c-contam { color: var(--mem-contam); font-weight: 700; }
+    .mem-c-spike { color: var(--mem-spike); font-weight: 700; }
+    /* Narrow screens: keep the numerals + ticks, drop the chapter titles. */
+    @media (max-width: 640px) {
+      .mem-chap { width: 5rem; }
+      .mem-chap-title { display: none; }
+    }
+
+    /* Labeled divider — a centered eyebrow word flanked by hairlines, used to
+       introduce the block below it. The section it leads drops its own top
+       border (.no-border) so the two rules don't stack. */
+    .section-divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 8vw;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--page-accent);
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--page-line);
+    }
+    .section-divider span {
+      font-size: 0.75rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .section.no-border { border-top: none; }
+
+    /* --- Use-case carousel ---
+       One wide panel is visible at a time. The track holds every card in a row;
+       prev/next buttons slide it by whole-panel steps via a transform set in JS. */
+    .carousel {
+      margin-top: 3rem;
+      /* Controls sit to the left of the card viewport, aligned to its top. */
+      display: flex;
+      align-items: flex-start;
+      gap: 1.75rem;
+    }
+    /* flex: none + an explicit width (set in JS) lets the viewport stretch past
+       the section to the right edge of the window so the cards bleed off-page. */
+    .carousel-viewport { flex: none; width: 100%; min-width: 0; overflow: hidden; }
+    .carousel-track {
+      /* position: relative so each card's offsetLeft is measured against the
+         track, which the centering math in JS relies on. */
+      position: relative;
+      display: flex;
+      gap: 1.5rem;
+      transition: transform 0.45s ease;
+    }
+    .card {
+      /* A fixed card width (about the old size) so that, with the viewport bled
+         out to the window edge, several cards trail off to the right at once. */
+      flex: 0 0 min(32rem, 82vw);
+      padding: 3rem 3.25rem;
+      border: 1px solid var(--page-line);
+      border-radius: 18px;
+      background: #fff;
+    }
+    .card .num {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--page-accent);
+    }
+    .card h3 {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin: 0.7rem 0 0.9rem;
+    }
+    .card p {
+      color: var(--page-dim);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 68ch;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--page-accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .card-link:hover { opacity: 0.65; }
+
+    .carousel-controls {
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .carousel-buttons { display: flex; gap: 0.6rem; }
+    .carousel-btn {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--page-line);
+      background: #fff;
+      color: var(--page-ink);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .carousel-btn:hover { background: #f4f5f8; border-color: rgba(20, 22, 31, 0.25); }
+    .carousel-status {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: var(--page-dim);
+    }
+
+    /* --- People grid ---
+       A responsive grid of person cards. There are no portraits yet, so each
+       person is shown as a round portrait. The grid uses auto-fill so a single
+       person sits alone at the left and more people fill in across the row as
+       they're added, without touching the markup. */
+    .people-grid {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    /* Each person is a card linking to their page: round portrait on top, name
+       and affiliation centered beneath it. */
+    .person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.1rem;
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--page-line);
+      border-radius: 18px;
+      background: #fff;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .person:hover {
+      border-color: rgba(20, 22, 31, 0.18);
+      box-shadow: 0 12px 30px rgba(20, 22, 31, 0.06);
+      transform: translateY(-3px);
+    }
+    .person-avatar {
+      flex: none;
+      width: 7.15rem;
+      height: 7.15rem;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(20, 22, 31, 0.05);
+      border: 1px solid var(--page-line);
+    }
+    .person-name {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+    .person-bio {
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--page-dim);
+    }
+
+    /* --- Subscribe panel: a night-sky card echoing the hero ---
+       A contained, rounded panel rather than a full-bleed band, so it floats on
+       the daybreak page with air around it. Centered to the section width, with
+       horizontal margins matching the page gutter. */
+    .subscribe-band {
+      max-width: 1100px;
+      margin: 7rem auto;
+      background: #0b0a18;
+      color: #eef1f8;
+      padding: 5rem 8vw;
+      border-radius: 12px;
+      text-align: center;
+    }
+    @media (max-width: 1180px) {
+      /* Keep the page gutter once the panel is no longer at its max width. */
+      .subscribe-band { margin-left: 8vw; margin-right: 8vw; }
+    }
+    .subscribe-band h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-wrap: balance;
+    }
+    .subscribe-band p { color: #9aa3bd; margin-top: 1rem; }
+    .subscribe-form {
+      margin-top: 2rem;
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .subscribe-form input {
+      padding: 0.8rem 1.1rem;
+      min-width: 260px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+    .subscribe-form button {
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 999px;
+      background: #eef1f8;
+      color: #0b0a18;
+      cursor: pointer;
+    }
+    .subscribe-form button:hover { background: #fff; }
+
+    /* --- Footer --- */
+    footer {
+      background: var(--page-bg);
+      border-top: 1px solid var(--page-line);
+      padding: 4rem 8vw 2.5rem;
+    }
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand .name {
+      font-family: 'Amiri', Georgia, serif;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .footer-brand .brand-mark { height: 1.4em; width: auto; flex: none; }
+    .footer-brand p { color: var(--page-dim); margin-top: 0.6rem; max-width: 28ch; font-size: 0.9rem; line-height: 1.5; }
+    .footer-col h4 {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--page-dim);
+      margin-bottom: 1rem;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--page-ink);
+      text-decoration: none;
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+    }
+    .footer-col a:hover { color: var(--page-accent); }
+    /* Outbound footer links: a dashed underline under the label (not the arrow)
+       plus a trailing ↗ to signal they leave the site. */
+    .footer-col a.outbound .label { border-bottom: 1px dashed currentColor; }
+    .footer-col a.outbound .ext { font-size: 0.85em; }
+    /* The envelope sits inline before the contact address, matching the link color.
+       Flex keeps the icon and the long email on one line instead of letting the
+       unbreakable address wrap below the icon. */
+    .footer-col a.mail-link { display: flex; align-items: center; }
+    .footer-col a.mail-link svg {
+      flex: none;
+      width: 0.95em; height: 0.95em;
+      margin-right: 0.4em;
+    }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--page-dim);
+    }
+
+    @media (max-width: 760px) {
+      .card { padding: 2.25rem 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      /* The two-column people grid collapses to one column when it gets tight. */
+      .people-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-brand" href="#">
+      <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 131" fill="currentColor" role="img" aria-label="Virgo">
+        <g stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.45">
+          <line x1="180.6" y1="21.3" x2="147.2" y2="50.1"/>
+          <line x1="147.2" y1="50.1" x2="125.8" y2="53.2"/>
+          <line x1="125.8" y1="53.2" x2="83.1" y2="92.1"/>
+          <line x1="83.1" y1="92.1" x2="36.3" y2="88.5"/>
+          <line x1="36.3" y1="88.5" x2="33.3" y2="71.4"/>
+          <line x1="33.3" y1="71.4" x2="6.7" y2="70.1"/>
+          <line x1="83.1" y1="92.1" x2="73.8" y2="49.8"/>
+          <line x1="73.8" y1="49.8" x2="47.4" y2="41.3"/>
+          <line x1="47.4" y1="41.3" x2="3.6" y2="39.9"/>
+          <line x1="73.8" y1="49.8" x2="112.2" y2="33.8"/>
+          <line x1="112.2" y1="33.8" x2="105.7" y2="3.6"/>
+          <line x1="112.2" y1="33.8" x2="125.8" y2="53.2"/>
+        </g>
+        <circle cx="180.6" cy="21.3" r="2.6"/>
+        <circle cx="147.2" cy="50.1" r="2.6"/>
+        <circle cx="125.8" cy="53.2" r="2.6"/>
+        <circle cx="36.3" cy="88.5" r="2.6"/>
+        <circle cx="33.3" cy="71.4" r="2.6"/>
+        <circle cx="6.7" cy="70.1" r="2.6"/>
+        <circle cx="73.8" cy="49.8" r="2.6"/>
+        <circle cx="47.4" cy="41.3" r="2.6"/>
+        <circle cx="3.6" cy="39.9" r="2.6"/>
+        <circle cx="112.2" cy="33.8" r="2.6"/>
+        <circle cx="105.7" cy="3.6" r="2.6"/>
+        <!-- Spica: the brand star, with diffraction spikes -->
+        <circle cx="83.1" cy="92.1" r="24.0" opacity="0.1"/>
+        <path d="M 45.1 92.1 L 83.1 90.1 L 121.1 92.1 L 83.1 94.1 Z" opacity="0.6"/>
+        <path d="M 83.1 54.1 L 81.1 92.1 L 83.1 130.1 L 85.1 92.1 Z" opacity="0.6"/>
+        <circle cx="83.1" cy="92.1" r="7.8"/>
+      </svg>
+      <span>Project Spica</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">Mission</a></li>
+        <li><a href="#approach">Use cases</a></li>
+        <li><a href="#activities">Publication</a></li>
+        <li><a href="#people">People</a></li>
+        <li><a class="nav-cta" href="#subscribe">Subscribe</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <canvas id="sky"></canvas>
+    <div class="hero-content">
+      <h1><em>Standard candles</em><br>for measuring AI.</h1>
+      <p class="tagline">
+        Spiking inserts certain data into training at known rates.
+        The spiked data serve as fixed reference points for rigorous AI measurement.
+      </p>
+      <a class="cta" href="#subscribe">Subscribe &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Empty placeholder sections, ready to be filled in later. -->
+  <main>
+    <section class="section reveal-group" id="about">
+      <div class="section-eyebrow reveal">Our mission</div>
+      <h2 class="reveal">Establish spiking as a<br>measurement standard.</h2>
+      <p class="lead reveal">
+        Spiking enables the rigorous measurement of many model properties and is a new tool for AI governance.
+        Project Spica will facilitate the science of spiking and help establish it as a shared standard.
+      </p>
+    </section>
+
+
+    <section class="section reveal-group" id="approach">
+      <div class="section-eyebrow reveal">Use cases</div>
+      <h2 class="reveal">Spiking makes the<br>unmeasurable measurable.</h2>
+
+      <!-- Body: test set contamination -> spiking corrects it -> MMLU example. -->
+      <p class="lead reveal">
+      Current AI measurement takes LLMs as fixed objects, limiting us to observational measurement.
+      By intervening in training, we can rigorously measure what was previously unmeasurable.
+      Scroll down to see how spiking is used to correct for test set contamination.
+      </p>
+      <div class="mem-scroll" id="memScroll">
+        <div class="mem-sticky">
+          <div class="mem-figure">
+            <!-- One horizontal ruler: large chapter numerals over a spine of
+                 frame ticks, built by JS from the storyboard; fill tracks scroll. -->
+            <div class="mem-rail" id="memRail" aria-hidden="true"></div>
+            <!-- The narrating sentence sits in the band between the ruler and the
+                 plot, centered, so it reads as a caption heading the figure. -->
+            <p class="mem-frame" id="memFrame"></p>
+            <div class="mem-plot-wrap">
+              <svg id="memPlot" viewBox="0 0 720 250" role="img"
+                   aria-label="A spiking pipeline: train on spiked data, calibrate a probe from the spikes, then label which MMLU examples are contaminated."></svg>
+            </div>
+            <!-- An escape hatch: jump past the tall scroll track to the use cases. -->
+            <a class="mem-skip" href="#usecaseCarousel">Skip &darr;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel reveal" id="usecaseCarousel">
+        <div class="carousel-controls">
+          <div class="carousel-buttons">
+            <button class="carousel-btn" data-dir="-1" aria-label="Previous use case">&larr;</button>
+            <button class="carousel-btn" data-dir="1" aria-label="Next use case">&rarr;</button>
+          </div>
+          <span class="carousel-status"></span>
+        </div>
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="card">
+              <div class="num">01</div>
+              <h3>Test set contamination</h3>
+              <p>
+                Models may answer test examples correctly not because they generalize, but because test examples were leaked into training and memorized.
+                By spiking a handful of test examples into training, we can estimate true model performance while correcting for contamination effects.
+              </p>
+              <a class="card-link" href="#">Read more &rarr;</a>
+            </div>
+            <div class="card">
+              <div class="num">02</div>
+              <h3>Memorization &amp; leakage</h3>
+              <p>
+                How much training data is extractable from a model has implications in privacy and copyright. By spiking texts at random, 
+                we can rigorously quantify memorization rates and understand what training decisions reduce undesired memorization.
+              </p>
+              <a class="card-link" href="#">Read more &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal-group" id="activities">
+      <div class="section-eyebrow reveal">Publication</div>
+      <h2 class="reveal">Everything about spiking.</h2>
+      <p class="lead reveal">
+        Our <a class="substack-inline" href="https://projectspica.substack.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>Substack</a> covers everything related to spiking, including
+        updates on new research, applications, and governance developments as
+        we move towards a shared standard.
+      </p>
+
+      <!-- Recent writing: rendered from window.POSTS (posts.js, refreshed by
+           fetch_posts.py). Stays hidden until there's at least one post. -->
+      <div class="recent" id="recent" hidden>
+        <div class="recent-label">Recent writing</div>
+        <div class="story-carousel" id="storyCarousel">
+          <div class="story-track" id="storyTrack"></div>
+          <div class="story-dots" id="storyDots"></div>
+        </div>
+      </div>
+
+      <p class="lead reveal">
+        Have a paper, result, or update worth covering? Reach us at
+        <a href="mailto:contact@projectspica.org">contact@projectspica.org</a>.
+      </p>
+    </section>
+
+    <section class="section reveal-group" id="people">
+      <div class="section-eyebrow reveal">People</div>
+      <p class="lead reveal">
+        Project Spica seeks to coordinate researchers across academia, industry, and government. 
+        If you want to contribute to our mission, please reach out.
+      </p>
+      <div class="people-grid reveal">
+        <a class="person" href="https://johntzwei.github.io/" target="_blank" rel="noopener">
+          <img class="person-avatar" src="johnny.webp" alt="Johnny Tian-Zheng Wei" />
+          <div class="person-body">
+            <div class="person-name">Johnny Tian-Zheng Wei</div>
+            <p class="person-bio">University of Southern California</p>
+          </div>
+        </a>
+        <a class="person" href="https://robinjia.github.io/" target="_blank" rel="noopener">
+          <img class="person-avatar" src="robin.webp" alt="Robin Jia" />
+          <div class="person-body">
+            <div class="person-name">Robin Jia</div>
+            <p class="person-bio">University of Southern California</p>
+          </div>
+        </a>
+        <a class="person" href="https://yanaiela.github.io/" target="_blank" rel="noopener">
+          <img class="person-avatar" src="yanai.webp" alt="Yanai Elazar" />
+          <div class="person-body">
+            <div class="person-name">Yanai Elazar</div>
+            <p class="person-bio">Bar-Ilan University</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <section class="subscribe-band" id="subscribe">
+    <h2>Stay close to the work.</h2>
+    <p>Our publication on spiking &mdash; delivered through Substack.</p>
+    <form class="subscribe-form" onsubmit="return handleSubscribe(this)">
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">
+          <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 131" fill="currentColor" role="img" aria-label="Virgo">
+            <g stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.45">
+              <line x1="180.6" y1="21.3" x2="147.2" y2="50.1"/>
+              <line x1="147.2" y1="50.1" x2="125.8" y2="53.2"/>
+              <line x1="125.8" y1="53.2" x2="83.1" y2="92.1"/>
+              <line x1="83.1" y1="92.1" x2="36.3" y2="88.5"/>
+              <line x1="36.3" y1="88.5" x2="33.3" y2="71.4"/>
+              <line x1="33.3" y1="71.4" x2="6.7" y2="70.1"/>
+              <line x1="83.1" y1="92.1" x2="73.8" y2="49.8"/>
+              <line x1="73.8" y1="49.8" x2="47.4" y2="41.3"/>
+              <line x1="47.4" y1="41.3" x2="3.6" y2="39.9"/>
+              <line x1="73.8" y1="49.8" x2="112.2" y2="33.8"/>
+              <line x1="112.2" y1="33.8" x2="105.7" y2="3.6"/>
+              <line x1="112.2" y1="33.8" x2="125.8" y2="53.2"/>
+            </g>
+            <circle cx="180.6" cy="21.3" r="2.6"/>
+            <circle cx="147.2" cy="50.1" r="2.6"/>
+            <circle cx="125.8" cy="53.2" r="2.6"/>
+            <circle cx="36.3" cy="88.5" r="2.6"/>
+            <circle cx="33.3" cy="71.4" r="2.6"/>
+            <circle cx="6.7" cy="70.1" r="2.6"/>
+            <circle cx="73.8" cy="49.8" r="2.6"/>
+            <circle cx="47.4" cy="41.3" r="2.6"/>
+            <circle cx="3.6" cy="39.9" r="2.6"/>
+            <circle cx="112.2" cy="33.8" r="2.6"/>
+            <circle cx="105.7" cy="3.6" r="2.6"/>
+            <!-- Spica: the brand star, with diffraction spikes -->
+            <circle cx="83.1" cy="92.1" r="24.0" opacity="0.1"/>
+            <path d="M 45.1 92.1 L 83.1 90.1 L 121.1 92.1 L 83.1 94.1 Z" opacity="0.6"/>
+            <path d="M 83.1 54.1 L 81.1 92.1 L 83.1 130.1 L 85.1 92.1 Z" opacity="0.6"/>
+            <circle cx="83.1" cy="92.1" r="7.8"/>
+          </svg>
+          <span>Project Spica</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#about">Mission</a>
+        <a href="#approach">Use cases</a>
+        <a href="#activities">Publication</a>
+        <a href="#people">People</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a class="outbound" href="https://projectspica.substack.com" target="_blank" rel="noopener"><span class="label">Substack</span> <span class="ext">&#8599;</span></a>
+        <a class="outbound" href="https://x.com/projectspica1" target="_blank" rel="noopener"><span class="label">X</span> <span class="ext">&#8599;</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#subscribe">Subscribe</a>
+        <a class="mail-link" href="mailto:contact@projectspica.org"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6 9-6"/></svg>contact@<br>projectspica.org</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Project Spica</span>
+    </div>
+  </footer>
+
+  <!-- Real star data: window.STARS, carved from the HYG catalogue around Spica. -->
+  <script src="stars.js"></script>
+  <!-- Recent posts: window.POSTS, refreshed from the Substack feed by fetch_posts.py. -->
+  <script src="posts.js"></script>
+  <script>
+    // === Subscribe ===
+    // Hand the email off to Substack, which owns the subscriber list and runs
+    // the confirmation flow. Pre-filling the email means the visitor lands on
+    // Substack already one click from done.
+    function handleSubscribe(form) {
+      const email = encodeURIComponent(form.email.value);
+      window.open('https://projectspica.substack.com/subscribe?email=' + email, '_blank');
+      return false;
+    }
+
+    // === Recent writing: the story carousel ===
+    // Render the latest Substack posts from window.POSTS (refreshed into posts.js
+    // by fetch_posts.py) as big cards in a full-width carousel. With no posts yet
+    // the whole block stays hidden, so the Publication section reads cleanly until
+    // the first piece goes out. Text is set via textContent, never innerHTML, so
+    // feed titles can't inject markup.
+    (function () {
+      const posts = window.POSTS || [];
+      if (!posts.length) return;
+      const carousel = document.getElementById('storyCarousel');
+      const track = document.getElementById('storyTrack');
+      const dotsWrap = document.getElementById('storyDots');
+
+      const el = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
+      };
+
+      // Build one big card: cover image + date, title, excerpt, and a read cue.
+      // The whole card is the link out to the post on Substack.
+      function buildStory(post) {
+        const story = el('a', 'story');
+        story.href = post.url;
+        story.target = '_blank';
+        story.rel = 'noopener';
+
+        const pic = el('div', 'story-pic');
+        if (post.image) {
+          const img = el('img');
+          img.src = post.image;
+          img.alt = '';
+          pic.appendChild(img);
+        }
+        story.appendChild(pic);
+
+        const body = el('div', 'story-body');
+        body.appendChild(el('div', 'story-date', post.date));
+        body.appendChild(el('h3', 'story-title', post.title));
+        body.appendChild(el('p', 'story-excerpt', post.excerpt));
+        body.appendChild(el('span', 'story-more', 'Read on Substack →'));
+        story.appendChild(body);
+        return story;
+      }
+
+      posts.forEach((post) => track.appendChild(buildStory(post)));
+      const slides = Array.from(track.children);
+
+      // One dot per card; the active one is emphasized in CSS. Clicking jumps.
+      const dots = slides.map((_, i) => {
+        const dot = el('button', 'story-dot');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to post ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+        return dot;
+      });
+
+      let index = 0;
+      function setActive(i) {
+        index = i;
+        dots.forEach((dot, j) => dot.classList.toggle('active', j === i));
+      }
+      // Center card i within the scroll container.
+      function scrollToIndex(i) {
+        const slide = slides[i];
+        track.scrollTo({ left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2 });
+      }
+      // A manual jump (dot click or auto-advance): move and mark active. Restart
+      // the timer only when the pointer isn't resting on the carousel, so a click
+      // while reading doesn't quietly re-arm the auto-advance under the cursor.
+      function goTo(i) {
+        i = (i + slides.length) % slides.length;
+        setActive(i);
+        scrollToIndex(i);
+        if (!hovering) rearm();
+      }
+
+      // Keep the dots honest while the visitor swipes or trackpad-scrolls by hand:
+      // once scrolling settles, mark whichever card is nearest center as active.
+      let settle;
+      track.addEventListener('scroll', () => {
+        clearTimeout(settle);
+        settle = setTimeout(() => {
+          const center = track.scrollLeft + track.clientWidth / 2;
+          let nearest = 0, best = Infinity;
+          slides.forEach((slide, i) => {
+            const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+            const distance = Math.abs(slideCenter - center);
+            if (distance < best) { best = distance; nearest = i; }
+          });
+          setActive(nearest);
+        }, 120);
+      }, { passive: true });
+
+      // Auto-advance every few seconds, unless reduced motion is preferred. The
+      // timer pauses while the pointer rests on the carousel so a reader isn't
+      // yanked to the next card mid-sentence; rearm() restarts the clock.
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let timer = null;
+      let hovering = false;
+      function rearm() {
+        if (reduce) return;
+        clearInterval(timer);
+        timer = setInterval(() => goTo(index + 1), 5000);
+      }
+      carousel.addEventListener('mouseenter', () => { hovering = true; clearInterval(timer); });
+      carousel.addEventListener('mouseleave', () => { hovering = false; rearm(); });
+
+      setActive(0);
+      document.getElementById('recent').hidden = false;
+      rearm();
+    })();
+
+    // === The real sky around Spica ===
+    // Each point is a genuine star from the HYG catalogue, placed at its true
+    // position relative to Spica and sized by its real brightness. Spica alone
+    // pulses, standing in for its role as a standard candle: a known luminosity.
+
+    const canvas = document.getElementById('sky');
+    const ctx = canvas.getContext('2d');
+
+    // Region half-widths in degrees — must match how stars.js was generated.
+    const RA_HALF = 36.0;
+    const DEC_HALF = 22.0;
+
+    // Magnitude is logarithmic and inverted: Spica at ~0.98 is bright, 7.0 faint.
+    // We map that range onto a 0..1 brightness for drawing.
+    const MAG_MIN = 0.9;
+    const MAG_LIMIT = 7.0;
+    const clamp01 = (t) => Math.min(1, Math.max(0, t));
+
+    const stars = window.STARS.map((s) => ({
+      dx: s.dx,
+      dy: s.dy,
+      name: s.name || null,
+      isSpica: s.name === 'Spica',
+      bright: clamp01((MAG_LIMIT - s.mag) / (MAG_LIMIT - MAG_MIN)),
+      twinkle: Math.random() * Math.PI * 2,   // random phase so they don't blink in unison
+    }));
+
+    // Look up a star by name, so we can trace Virgo's figure between real stars.
+    const starByName = {};
+    for (const s of stars) if (s.name) starByName[s.name] = s;
+
+    // Spica itself, kept on hand so the hover annotation can find it each frame.
+    const spica = stars.find((s) => s.isSpica);
+
+    // The Maiden's figure as the modern IAU constellation lines: a plain list of
+    // star pairs. The IAU figure runs its spine through Spica and leaves Zavijava
+    // and Khambalia unconnected, which is why the earlier hand-made lines looked
+    // wrong.
+    const VIRGO_EDGES = [
+      ['Nu Virginis', 'Zaniah'], ['Zaniah', 'Porrima'], ['Porrima', 'Spica'],
+      ['Spica', 'Kang'], ['Kang', 'Syrma'], ['Syrma', 'Mu Virginis'],
+      ['Spica', 'Heze'], ['Heze', 'Tau Virginis'], ['Tau Virginis', '109 Virginis'],
+      ['Heze', 'Minelauva'], ['Minelauva', 'Vindemiatrix'], ['Minelauva', 'Porrima'],
+    ];
+
+    const neighbors = {};
+    for (const [a, b] of VIRGO_EDGES) {
+      (neighbors[a] = neighbors[a] || []).push(b);
+      (neighbors[b] = neighbors[b] || []).push(a);
+    }
+
+    // Order the edges by a depth-first walk from Spica, our anchor: follow one
+    // limb all the way out to its tip before backing up for the next. This is the
+    // order the single drawing pulse will visit them — one line at a time. We
+    // recurse only into newly seen stars, but still emit the edge that closes
+    // Virgo's body loop (a "back edge" to an already-seen star) so that every
+    // connection is drawn exactly once.
+    const VIRGO_DFS = [];
+    const seenStars = new Set(['Spica']);
+    const seenEdges = new Set();
+    const edgeKey = (a, b) => [a, b].sort().join('|');
+    function walk(name) {
+      for (const neighbor of neighbors[name]) {
+        const key = edgeKey(name, neighbor);
+        if (seenEdges.has(key)) continue;
+        seenEdges.add(key);
+        VIRGO_DFS.push([name, neighbor]);
+        if (!seenStars.has(neighbor)) {
+          seenStars.add(neighbor);
+          walk(neighbor);
+        }
+      }
+    }
+    walk('Spica');
+
+    // Each edge's source star pulses first, at the start of that edge's step, to
+    // announce that a line is about to leave it — then the line is drawn out from
+    // it. Record the step at which each star is reached as a destination.
+    VIRGO_DFS.forEach(([from, to], i) => {
+      (starByName[to].pulseAts = starByName[to].pulseAts || []).push(i);
+    });
+
+    // Give each Virgo star its own continuously running pulse with a random phase
+    // and rate, so the whole figure shimmers out of sync rather than beating in
+    // unison. Spica is left out here — it keeps its own dedicated anchor pulse.
+    for (const s of stars) {
+      if (s.pulseAts && !s.isSpica) {
+        s.pulsePhase = Math.random() * Math.PI * 2;
+        s.pulseRate = 0.45 + Math.random() * 0.6;  // radians/sec — slow, varied periods
+      }
+    }
+
+    // The view is centered here rather than on Spica. Spica sits at the origin,
+    // but the figure as a whole spreads up and east of it, so centering on the
+    // figure's rough heart (degrees east, degrees north of Spica) drops Spica
+    // toward the lower foot — where charts place it as the maiden's ear of wheat.
+    const VIEW_DX = 0.9;
+    const VIEW_DY = 10.2;
+
+    // Recompute screen positions whenever the viewport changes. The trace schedule
+    // lives here too, since each edge's grow time depends on its on-screen length.
+    let width, height, scale;
+    const edgeStart = [];   // seconds into the trace each edge begins announcing
+    const edgeGrow = [];    // seconds each edge's line spends growing (length / speed)
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // One scale for both axes so degrees map without distortion; max() fills
+      // the screen. East (+dx) is drawn left and north (+dy) up, as on sky charts.
+      scale = Math.max(width / (2 * RA_HALF), height / (2 * DEC_HALF));
+      for (const s of stars) {
+        s.x = width / 2 - (s.dx - VIEW_DX) * scale;
+        s.y = height / 2 - (s.dy - VIEW_DY) * scale;
+      }
+
+      // Chain the edges end to end: each takes LEAD_TIME to announce, then grows
+      // over length / TRACE_SPEED so its line advances at one shared pixel speed.
+      // A star flares when an edge leaving it begins, so record those times.
+      for (const s of stars) s.arriveAts = [];
+      let clock = 0;
+      VIRGO_DFS.forEach(([fromName, toName], i) => {
+        const from = starByName[fromName];
+        const to = starByName[toName];
+        const length = Math.hypot(to.x - from.x, to.y - from.y);
+        edgeStart[i] = clock;
+        edgeGrow[i] = length / TRACE_SPEED;
+        from.arriveAts.push(clock);
+        clock += LEAD_TIME + edgeGrow[i];
+      });
+    }
+
+    // Tracing the figure. Each edge is announced by a halo at its source,
+    // then a line grows out from it. The growth runs at a constant pixel speed, so
+    // every line is drawn at the same visual pace — long edges simply take longer
+    // than short ones rather than racing to fit a fixed per-edge time.
+    const LEAD_TIME = 0.7;     // seconds the halo announces before the line grows
+    const TRACE_SPEED = 90;    // pixels per second every line grows — one shared speed
+    const FLARE_WIDTH = 1.5;   // seconds to each side that a star's arrival flare lasts
+    const RIPPLE_LIFE = 3.6;   // seconds an expanding halo takes to fade out
+    const RIPPLE_SPEED = 30;   // pixels per second the halo expands
+
+    // === Spica hover annotation ===
+    // Pointer position in canvas pixels, and how near it must come to Spica to
+    // wake the label. The annotation eases in and out through hoverAlpha rather
+    // than snapping, so it reads as a soft reveal beside the anchor star.
+    const HOVER_RADIUS = 50;     // pixels from Spica's center that count as a hover — ~1.5x its smallest halo
+    let pointerX = -1, pointerY = -1, pointerInside = false;
+    let hoverAlpha = 0;          // 0 hidden, 1 fully shown — chased toward the target each frame
+
+    // === Load fades: the mint sky eases in first, then the stars over it ===
+    // Both stages are driven here as time-based alphas rather than CSS opacity,
+    // so the gradient and the starlight fade independently on one canvas. Under a
+    // reduced-motion preference both start at zero delay, showing the sky at once.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SKY_START = reduceMotion ? 0 : 0.2;    // sky fades in alongside the text (same delay)
+    const SKY_FADE = 1.0;                         // seconds the sky takes to arrive
+    const STARS_START = reduceMotion ? 0 : 1.1;   // begin as the sky's fade is nearly done, overlapping its tail
+    const STARS_FADE = 1.6;                       // seconds the starlight takes to arrive
+    const TRACE_START = reduceMotion ? 0 : STARS_START + STARS_FADE;   // trace begins the instant the stars finish fading in
+
+    const pageStart = performance.now();
+    function draw(now) {
+      const t = (now - pageStart) / 1000;         // seconds since the page loaded
+      const skyAlpha = clamp01((t - SKY_START) / SKY_FADE);
+      const starAlpha = clamp01((t - STARS_START) / STARS_FADE);
+      // The constellation trace runs on its own clock that starts a beat after the
+      // stars, so the field settles in place before the figure begins drawing
+      // itself. Negative before then, which leaves every edge unstarted.
+      const elapsed = t - TRACE_START;
+
+      // Night-sky gradient, authored pre-inversion: dark purple overhead easing
+      // down to near-black at the horizon. After the hero is inverted this reads
+      // as a pale daybreak sky — soft mint up high, brightening to near-white at
+      // the base, where dawn light gathers and the page below can continue clean.
+      // Drawn at skyAlpha over a cleared (transparent) canvas, so it eases in
+      // first; before it arrives the page shows through behind the hero text.
+      const bg = ctx.createLinearGradient(0, 0, 0, height);
+      bg.addColorStop(0.0, '#241540');
+      bg.addColorStop(0.22, '#170e2c');
+      bg.addColorStop(0.55, '#0c0a1e');
+      bg.addColorStop(1.0, '#000000');   // inverts to pure white, matching the page below
+      ctx.clearRect(0, 0, width, height);
+      ctx.globalAlpha = skyAlpha;
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
+
+      // The whole starfield rides starAlpha so it fades up as a second beat over
+      // the settled sky. Additive blending so overlapping starlight pools into
+      // soft glows.
+      ctx.globalAlpha = starAlpha;
+      ctx.globalCompositeOperation = 'lighter';
+
+      // === Virgo: a single light walks the figure in depth-first order ===
+      // The trace clock is `elapsed`, in seconds. Each edge announces with a halo,
+      // then grows its line at TRACE_SPEED — a constant pace, so long lines take
+      // longer instead of drawing faster. `elapsed` only ever climbs, so the
+      // figure is traced once and then held: every line clamps to fully grown, the
+      // last halo fades, and no flare retriggers.
+      ctx.lineWidth = 1;
+      VIRGO_DFS.forEach(([fromName, toName], i) => {
+        const local = elapsed - edgeStart[i];   // seconds since this edge began
+        if (local <= 0) return;                  // its turn hasn't come yet
+        const from = starByName[fromName];
+        const to = starByName[toName];
+
+        // The halo: a ring shed from the source the moment its turn begins,
+        // expanding and fading — it pulses to announce where the line will set out.
+        const rippleAge = local;
+        if (rippleAge < RIPPLE_LIFE) {
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = `rgba(159, 196, 255, ${(1 - rippleAge / RIPPLE_LIFE) * 0.3})`;
+          ctx.beginPath();
+          ctx.arc(from.x, from.y, rippleAge * RIPPLE_SPEED, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // The line, growing from source to destination once the pulse has led.
+        // Dividing the elapsed grow time by this edge's own grow time makes every
+        // line advance the same pixels per second, whatever its length. Thicker
+        // but dimmer: because the scene is inverted, a lower additive alpha here
+        // reads as a paler, lighter line on the final daybreak sky.
+        const grown = clamp01((local - LEAD_TIME) / edgeGrow[i]);
+        if (grown <= 0) return;
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = 'rgba(159, 196, 255, 0.2)';
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(from.x + (to.x - from.x) * grown, from.y + (to.y - from.y) * grown);
+        ctx.stroke();
+      });
+
+      for (const s of stars) {
+        const twinkle = 0.85 + 0.15 * Math.sin(elapsed * 1.5 + s.twinkle);
+
+        // Spica beats with a slow sine; every other star holds steady.
+        let bright = s.bright;
+        let radius = 0.5 + s.bright * 2.2;
+        if (s.isSpica) {
+          const pulse = 0.5 + 0.5 * Math.sin(elapsed * 1.0);
+          bright = 0.8 + 0.2 * pulse;     // never fully dark — it's the anchor
+          // High floor: even at the bottom of its beat Spica stays well above any
+          // other star's size, so it never deflates toward the pack. The swing
+          // rides on top of that floor rather than shrinking it down to it.
+          radius = 7.0 + 4.0 * pulse;
+        }
+
+        // Every other Virgo star pulses on its own random beat, on top of the
+        // brighter flare it gets as the trace reaches it. Kept gentler than
+        // Spica's so the anchor always reads as the most prominent star.
+        if (s.pulsePhase !== undefined) {
+          const pulse = 0.5 + 0.5 * Math.sin(elapsed * s.pulseRate + s.pulsePhase);
+          bright = Math.min(1, bright + 0.2 * pulse);
+          radius *= 1 + 0.45 * pulse;
+        }
+
+        // Virgo stars flare as the trace leaves them — peaking when the trace
+        // clock matches a departure time (when an edge leaving this star begins).
+        if (s.pulseAts) {
+          let flare = 0;
+          for (const at of s.arriveAts) flare = Math.max(flare, 1 - Math.abs(elapsed - at) / FLARE_WIDTH);
+          bright = Math.min(1, bright + flare);
+          radius += flare * 2.5;
+        }
+
+        const color = s.isSpica ? '159, 196, 255' : '232, 236, 246';
+        const alpha = bright * twinkle;
+
+        // Soft radial glow (bloom): the halo of light around every star. Without
+        // it the spikes read as a bare cross; this glow is what makes each point
+        // feel luminous. The middle stop gives a non-linear falloff — a bright
+        // tight center trailing into a long faint tail — which looks far more
+        // natural than a straight fade. Like everything else it scales with
+        // luminosity, and additive blending lets neighboring halos pool.
+        const glowRadius = radius * (3 + 5 * bright);
+        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, glowRadius);
+        glow.addColorStop(0, `rgba(${color}, ${alpha * 0.55})`);
+        glow.addColorStop(0.25, `rgba(${color}, ${alpha * 0.18})`);
+        glow.addColorStop(1, `rgba(${color}, 0)`);
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, glowRadius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Diffraction spikes: the cross-shaped glint bright stars show in
+        // imaging. Length, thickness, and intensity all scale with luminosity,
+        // so faint stars show only a whisper and Spica blazes. Each spike is a
+        // bar whose gradient fades to nothing at both tips; two bars at right
+        // angles make the cross.
+        // NOTE: [performance improvement] Together with the glow this builds
+        // three gradients per star every frame — for ~800 stars that is the bulk
+        // of the per-frame cost. Gating the spikes (and a wider glow) on
+        // brightness, e.g. bright > 0.5, would skip the faint stars whose detail
+        // is invisible anyway, at the price of an abrupt cutoff.
+        const spikeLength = radius * (4 + 9 * bright);
+        const spikeThickness = 0.6 + bright * 1.3;
+        for (let k = 0; k < 2; k++) {
+          ctx.save();
+          ctx.translate(s.x, s.y);
+          ctx.rotate(k * Math.PI / 2);
+          const spike = ctx.createLinearGradient(-spikeLength, 0, spikeLength, 0);
+          spike.addColorStop(0, `rgba(${color}, 0)`);
+          spike.addColorStop(0.5, `rgba(${color}, ${alpha * 0.5})`);
+          spike.addColorStop(1, `rgba(${color}, 0)`);
+          ctx.fillStyle = spike;
+          ctx.fillRect(-spikeLength, -spikeThickness / 2, spikeLength * 2, spikeThickness);
+          ctx.restore();
+        }
+
+        ctx.fillStyle = `rgba(${color}, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+
+      // === Spica hover label ===
+      // Drawn in plain source-over (not additive) so the text stays crisp rather
+      // than blooming. Pre-inversion it is authored light on the dark sky, which
+      // the hero's invert flips to dark text on the daybreak field below.
+      const hovered = pointerInside &&
+        Math.hypot(pointerX - spica.x, pointerY - spica.y) < HOVER_RADIUS;
+      hero.style.cursor = hovered ? 'pointer' : '';
+      hoverAlpha += ((hovered ? 1 : 0) - hoverAlpha) * 0.18;
+      if (hoverAlpha > 0.01) {
+        const a = hoverAlpha;
+        // Anchor the text to whichever side of Spica has room, so a star near the
+        // right edge labels leftward instead of running off-screen.
+        const onLeft = spica.x < width * 0.62;
+        const tx = onLeft ? spica.x + 40 : spica.x - 40;
+        ctx.textAlign = onLeft ? 'left' : 'right';
+        ctx.textBaseline = 'alphabetic';
+
+        // A faint leader joining the star to its label.
+        ctx.strokeStyle = `rgba(159, 196, 255, ${a * 0.5})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(spica.x + (onLeft ? 14 : -14), spica.y);
+        ctx.lineTo(onLeft ? tx - 6 : tx + 6, spica.y);
+        ctx.stroke();
+
+        ctx.font = 'italic 400 26px "Amiri", Georgia, serif';
+        ctx.fillStyle = `rgba(235, 238, 247, ${a})`;
+        ctx.fillText('Spica', tx, spica.y - 50);
+
+        // Each sentence is hand-wrapped across two lines so it never runs off-screen.
+        ctx.font = '16px "Lato", system-ui, sans-serif';
+        ctx.fillStyle = `rgba(214, 219, 232, ${a * 0.92})`;
+        ctx.fillText('Standard candles are objects of known brightness,', tx, spica.y - 22);
+        ctx.fillText('used as references for cosmic distances.', tx, spica.y - 2);
+        ctx.fillText('Our namesake is Spica, the brightest star in Virgo.', tx, spica.y + 22);
+        ctx.fillText('Its Latin name is spīca, which means ‘spike’.', tx, spica.y + 42);
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    // Track the pointer over the hero so the draw loop can tell when it nears
+    // Spica. Listening on the hero (not the canvas) means the events still arrive
+    // while the cursor is over the hero text layered above the starfield.
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      pointerX = e.clientX - rect.left;
+      pointerY = e.clientY - rect.top;
+      pointerInside = true;
+    });
+    hero.addEventListener('mouseleave', () => { pointerInside = false; });
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(draw);
+
+    // === Use-case carousel ===
+    // Slide the track by whole cards. The index is clamped to the card range so
+    // the buttons simply stop at the ends rather than wrapping around.
+    const carousel = document.getElementById('usecaseCarousel');
+    const viewport = carousel.querySelector('.carousel-viewport');
+    const track = carousel.querySelector('.carousel-track');
+    const cards = track.querySelectorAll('.card');
+    const status = carousel.querySelector('.carousel-status');
+    let index = 0;
+
+    function fitViewport() {
+      // Stretch the viewport from its own left edge out to the window's right
+      // edge, so the row of cards bleeds off the page instead of being clipped
+      // back at the section's right margin.
+      const left = viewport.getBoundingClientRect().left;
+      viewport.style.width = `${document.documentElement.clientWidth - left}px`;
+    }
+
+    // Leave a sliver of the previous card showing on the left so the carousel
+    // reads as a strip you've scrolled into, not a single isolated panel.
+    const peek = 56;
+
+    function showCard() {
+      // Left-align the selected card; the remaining cards trail off to the right
+      // and run past the window edge, where overflow:hidden clips them. Past the
+      // first card we shift right by `peek` so the prior card stays partly visible.
+      const card = cards[index];
+      const offset = index > 0 ? card.offsetLeft - peek : card.offsetLeft;
+      track.style.transform = `translateX(${-offset}px)`;
+      status.textContent = `${String(index + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+    }
+
+    carousel.querySelectorAll('.carousel-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const direction = Number(button.dataset.dir);
+        index = Math.min(Math.max(index + direction, 0), cards.length - 1);
+        showCard();
+      });
+    });
+
+    fitViewport();
+    showCard();
+    // The bleed width depends on the window size, so recompute it on resize.
+    window.addEventListener('resize', () => { fitViewport(); showCard(); });
+
+    // === Scroll reveal ===
+    // Each .reveal-group holds a few .reveal elements. We number the reveals
+    // within each group so CSS can stagger them (the title leads, its body text
+    // follows a beat later), then watch each group with an IntersectionObserver:
+    // the first time a group scrolls into view, we add .is-visible and let the CSS
+    // transitions carry its children up into place. We unobserve afterward so the
+    // entrance plays once rather than replaying on every scroll past.
+    const revealGroups = document.querySelectorAll('.reveal-group');
+    revealGroups.forEach((group) => {
+      group.querySelectorAll('.reveal').forEach((element, i) => {
+        element.style.setProperty('--i', i);
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    }, {
+      // Hold off until the section has scrolled well up into the viewport: the
+      // -30% bottom inset shrinks the observer's window, so a group only counts as
+      // "in view" once its top has climbed past the lower 30% of the screen.
+      rootMargin: '0px 0px -30% 0px',
+    });
+    revealGroups.forEach((group) => revealObserver.observe(group));
+
+    // === Explainer: the memorization-threshold scrollytelling demo ===
+    // The figure pins to the viewport while a tall track scrolls past it. That
+    // scroll progress (0..1) drives three beats: first MMLU is a loose cloud;
+    // then the examples sort onto a 1-D memorization metric; then spiked
+    // known-positive examples drop in and reveal where the memorized boundary
+    // sits — the cut you couldn't justify from the cloud alone.
+    (function () {
+      const svg = document.getElementById('memPlot');
+      const track = document.getElementById('memScroll');
+      if (!svg || !track) return;
+      const SVGNS = 'http://www.w3.org/2000/svg';
+      const rail = document.getElementById('memRail');
+      const frame = document.getElementById('memFrame');
+
+      // --- Plot geometry (in viewBox units: 720 x 250) ---
+      const X0 = 56, X1 = 664;          // the metric 0..1 spans this width
+      const AXIS_Y = 150;               // MMLU rides above this line, spikes below
+      const metricToX = (m) => X0 + m * (X1 - X0);
+
+      // --- Seeded, illustrative data so the picture is stable across reloads ---
+      // NOTE: [pedagogical] mulberry32 is a tiny PRNG; seeding it makes the
+      // scatter reproducible without shipping a separate data file.
+      function mulberry32(seed) {
+        return function () {
+          seed = (seed + 0x6D2B79F5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rand = mulberry32(7);
+      // Box-Muller draws a standard normal; we scale and shift it per cluster.
+      function gaussian(mean, sd) {
+        const u = 1 - rand(), v = rand();
+        return mean + sd * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+      const clamp01 = (x) => Math.min(0.97, Math.max(0.03, x));
+
+      // MMLU is a mostly-unmemorized bulk with a memorized (contaminated) minority.
+      // Each dot has two homes: an orderly grid spot and its sorted spot on the
+      // metric line; the animation moves them between the two across the frames.
+      const COLS = 8, ROWS = 3;             // 24 orderly points — big and hollow
+      const GRID_X0 = 171, GRID_DX = 54, GRID_Y0 = 54, GRID_DY = 30;
+      const MEM_MEAN = 0.72, MEM_SD = 0.1, CLEAN_MEAN = 0.34, CLEAN_SD = 0.12;
+      const mmlu = [];
+      for (let i = 0; i < COLS * ROWS; i++) {
+        const memorized = rand() < 0.2;
+        const m = clamp01(gaussian(memorized ? MEM_MEAN : CLEAN_MEAN,
+                                   memorized ? MEM_SD : CLEAN_SD));
+        mmlu.push({
+          m,
+          contaminated: memorized,   // these leaked into training (we don't know which)
+          gridX: GRID_X0 + (i % COLS) * GRID_DX,
+          gridY: GRID_Y0 + Math.floor(i / COLS) * GRID_DY,
+          // Sorted home: x is the metric; y sits right on the line. The points are
+          // big and hollow, so they read fine even where they overlap — no jitter.
+          lineX: metricToX(m), lineY: AXIS_Y,
+        });
+      }
+      // Spikes are our controls, inserted in two known groups: some examples held
+      // out entirely (0×) and some inserted once (1×). A held-out spike is never
+      // trained on, so it scores like a clean example; an inserted spike is
+      // trained once, so it scores as memorized. The two groups thus bracket the
+      // boundary — that contrast is what calibrates it.
+      // NOTE: [thought process] Two groups with a *known* difference (0× vs 1×)
+      // give a causal handle the single-rate version lacked: we are not assuming
+      // where memorized examples sit, we are reading it off a controlled insertion.
+      const PER_GROUP = 4;
+      const spikePool = [];
+      [0, 1].forEach((inserted) => {                       // 0 = held out, 1 = inserted once
+        for (let i = 0; i < PER_GROUP; i++) {
+          const memorized = inserted === 1;
+          spikePool.push({
+            inserted,
+            m: clamp01(gaussian(memorized ? MEM_MEAN : CLEAN_MEAN,
+                                memorized ? MEM_SD : CLEAN_SD)),
+            // Held in two labeled clusters in beat 1 (a row each), then dropped
+            // onto the line by their metric in beat 3.
+            holdX: (inserted === 0 ? 232 : 430) + i * 38, holdY: 200,
+            lineY: 188,
+          });
+        }
+      });
+      const SPIKES = spikePool.length;
+      // The boundary sits in the gap between the two groups: the midpoint of their
+      // means separates "scores like a held-out example" from "scores like an
+      // inserted one". This is read off the spikes rather than assumed.
+      const groupMean = (g) => {
+        const xs = spikePool.filter((d) => d.inserted === g);
+        return xs.reduce((s, d) => s + d.m, 0) / xs.length;
+      };
+      const cutMetric = (groupMean(0) + groupMean(1)) / 2;
+
+      // --- Build the SVG once; the scroll handler only moves/restyles things ---
+      const make = (tag, attrs) => {
+        const el = document.createElementNS(SVGNS, tag);
+        for (const k in attrs) el.setAttribute(k, attrs[k]);
+        return el;
+      };
+
+      // The number line (metric axis) and its end labels — shown once the line
+      // is first used (beat 2) and kept from then on.
+      const axis = make('line', { class: 'mem-axis', x1: X0, y1: AXIS_Y, x2: X1, y2: AXIS_Y });
+      const lo = make('text', { class: 'mem-tick-label', x: X0, y: AXIS_Y + 22 }); lo.textContent = 'less memorized';
+      const hi = make('text', { class: 'mem-tick-label', x: X1, y: AXIS_Y + 22, 'text-anchor': 'end' }); hi.textContent = 'more memorized';
+      [axis, lo, hi].forEach((el) => { el.style.opacity = 0; svg.appendChild(el); });
+
+      mmlu.forEach((d) => {
+        d.el = make('circle', { class: 'mem-dot', cx: d.gridX, cy: d.gridY, r: 6 });
+        d.el.style.opacity = 0;
+        svg.appendChild(d.el);
+      });
+      spikePool.forEach((d) => {
+        // Held-out spikes (0×) read as hollow diamonds — nothing was added — while
+        // inserted spikes (1×) are filled, mirroring "seen" vs "unseen".
+        d.el = make('path', { class: d.inserted === 0 ? 'mem-spike held' : 'mem-spike',
+                              d: 'M0,-6 L6,0 L0,6 L-6,0 Z',
+                              transform: `translate(${d.holdX},${d.holdY})` });
+        d.el.style.opacity = 0;
+        svg.appendChild(d.el);
+      });
+
+      // One label under each held cluster (beat 1d): how many times it was inserted.
+      const spikeLabels = [
+        make('text', { class: 'mem-count', x: 289, y: 228, 'text-anchor': 'middle' }),
+        make('text', { class: 'mem-count', x: 487, y: 228, 'text-anchor': 'middle' }),
+      ];
+      spikeLabels[0].textContent = 'inserted 0×';
+      spikeLabels[1].textContent = 'inserted 1×';
+      spikeLabels.forEach((el) => { el.style.opacity = 0; svg.appendChild(el); });
+
+      // A wandering dashed line: in the calibrate beat, where to cut is a guess.
+      const guess = make('g', { class: 'mem-guess' });
+      const guessLine = make('line', { y1: 120, y2: 178 });
+      const guessMark = make('text', { y: 112, 'text-anchor': 'middle' }); guessMark.textContent = '?';
+      guess.appendChild(guessLine); guess.appendChild(guessMark);
+      guess.style.opacity = 0;
+      svg.appendChild(guess);
+
+      // The calibrated boundary, committed in beat 3.
+      const cutX = metricToX(cutMetric);
+      const cut = make('line', { class: 'mem-threshold', x1: cutX, x2: cutX, y1: 140, y2: 198 });
+      cut.style.opacity = 0;
+      svg.appendChild(cut);
+
+      // === Animation ===
+      const clamp = (x) => Math.min(1, Math.max(0, x));
+      const smooth = (x) => { x = clamp(x); return x * x * (3 - 2 * x); };
+      const lerp = (a, b, t) => a + (b - a) * t;
+      let lastSentence = '';
+      const say = (html) => { if (html !== lastSentence) { frame.innerHTML = html; lastSentence = html; } };
+
+      // === Storyboard ===
+      // The whole animation is read off this one table — ten frames in three beats
+      // (1 train · 2 calibrate · 3 label). Each frame lists the scroll point where
+      // it ends and the single sentence shown during it. Every motion below eases
+      // off a frame's start/end by id, so the code follows the storyboard directly.
+      const FRAMES = [
+        { id: '1a', end: 0.085, line: 'Here is a benchmark &mdash; every example in MMLU.' },
+        { id: '1b', end: 0.165, line: 'Some are <span class="mem-c-contam">contaminated</span>: they leaked into training and are memorized.' },
+        { id: '1c', end: 0.235, line: 'But which ones? In practice, we can&rsquo;t tell.' },
+        { id: '1d', end: 0.370, line: 'We will <span class="mem-c-spike">spike</span> the training data, inserting some examples at known rates.' },
+        { id: '2a', end: 0.465, line: 'Then score every example by how memorized it looks.' },
+        { id: '2b', end: 0.555, line: 'Where does contamination begin? On its own, any cut is heuristic.' },
+        { id: '2c', end: 0.630, line: 'To place it we need ground truth.' },
+        { id: '3a', end: 0.735, line: 'Our <span class="mem-c-spike">spiked examples</span> are ground truth and used as reference points.' },
+        { id: '3b', end: 0.815, line: 'They reveal the boundary between clean and <span class="mem-c-contam">contaminated</span>.' },
+        { id: '3c', end: 1.001, line: 'Based on the scores, everything past this boundary is <span class="mem-c-contam">contamination</span>.' },
+      ];
+      // A frame's end point, and its start (the previous frame's end; 0 for the first).
+      const frameEnd = (id) => FRAMES.find((f) => f.id === id).end;
+      const frameStart = (id) => { const i = FRAMES.findIndex((f) => f.id === id); return i ? FRAMES[i - 1].end : 0; };
+
+      // Chapters group the frames; their large numerals head the one ruler.
+      const CHAPTERS = [
+        { n: '1', title: 'Spike the training data', first: '1a', last: '1d' },
+        { n: '2', title: 'Calibrate a probe',       first: '2a', last: '2c' },
+        { n: '3', title: 'Label test examples',     first: '3a', last: '3c' },
+      ];
+
+      // Build the one ruler: a large numeral per chapter and a tick per frame,
+      // each placed at its scroll-time center so the fill reaches it as it lights.
+      const centerPct = (a, b) => (((a + Math.min(b, 1)) / 2) * 100) + '%';
+      CHAPTERS.forEach((c) => {
+        c.start = frameStart(c.first);
+        c.end = frameEnd(c.last);
+        c.el = document.createElement('div');
+        c.el.className = 'mem-chap';
+        c.el.style.left = centerPct(c.start, c.end);
+        c.el.innerHTML = `<span class="mem-chap-num">${c.n}</span><span class="mem-chap-title">${c.title}</span>`;
+        rail.appendChild(c.el);
+      });
+      FRAMES.forEach((f) => {
+        f.dot = document.createElement('div');
+        f.dot.className = 'mem-fdot';
+        f.dot.style.left = centerPct(frameStart(f.id), f.end);
+        rail.appendChild(f.dot);
+      });
+
+      function render(p) {
+        // into('2a', 0.08): eases 0 -> 1 over 0.08 of scroll once frame 2a begins.
+        const into = (id, dur) => smooth((p - frameStart(id)) / dur);
+
+        const gridIn  = into('1a', 0.05);                                  // 1a points appear
+        const contam  = clamp(into('1b', 0.05) - into('1c', 0.05));        // 1b color on, 1c off
+        const spikeIn = into('1d', 0.06);                                  // 1d spikes appear
+        const onLine  = clamp(into('2a', 0.08)                             // 2a grid -> line
+                            - into('2c', 0.07)                             // 2c line -> grid
+                            + into('3c', 0.08));                           // 3c grid -> line
+        const heur    = clamp(into('2b', 0.04) - smooth((p - frameEnd('2b')) / 0.05)); // 2b guess
+        const spikeLn = into('3a', 0.09);                                  // 3a spikes -> line
+        const pCut    = into('3b', 0.07);                                  // 3b boundary commits
+        const label   = smooth((p - frameStart('3c') - 0.06) / 0.08);      // 3c labels (after rings land)
+
+        // The number line appears as the rings first reach it (frame 2a) and stays.
+        const axisVis = into('2a', 0.07);
+        [axis, lo, hi].forEach((el) => { el.style.opacity = axisVis; });
+
+        // MMLU rings: fade in (staggered), ride grid <-> line, and take the warm
+        // color only when revealed (true contamination, 1b) or labeled (3c).
+        mmlu.forEach((d, i) => {
+          d.el.style.opacity = clamp(gridIn * (mmlu.length + 8) - i);
+          d.el.setAttribute('cx', lerp(d.gridX, d.lineX, onLine));
+          d.el.setAttribute('cy', lerp(d.gridY, d.lineY, onLine));
+          const warm = Math.max(d.contaminated ? contam : 0, d.m > cutMetric ? label : 0);
+          d.el.style.setProperty('--warm', warm);
+        });
+
+        // Spikes: appear in two held clusters, then drop onto the line by metric —
+        // the held-out (0×) group landing low, the inserted (1×) group high.
+        spikePool.forEach((d, i) => {
+          d.el.style.opacity = clamp(spikeIn * (SPIKES + 6) - i);
+          const x = lerp(d.holdX, metricToX(d.m), spikeLn);
+          const y = lerp(d.holdY, d.lineY, spikeLn);
+          d.el.setAttribute('transform', `translate(${x},${y})`);
+        });
+
+        // The 0×/1× labels fade in while the spikes are held, out as they drop.
+        const labelAlpha = spikeIn * (1 - spikeLn);
+        spikeLabels.forEach((el) => { el.style.opacity = labelAlpha; });
+
+        // The guess line wanders during calibrate; the boundary commits in beat 3.
+        guess.style.opacity = heur;
+        const gx = metricToX(0.5 + 0.12 * Math.sin(p * 55));
+        guessLine.setAttribute('x1', gx); guessLine.setAttribute('x2', gx); guessMark.setAttribute('x', gx);
+        cut.style.opacity = pCut;
+
+        // The single sentence, and the active frame: the first one not yet passed.
+        const activeIndex = FRAMES.findIndex((f) => p < f.end);
+        const active = activeIndex === -1 ? FRAMES[FRAMES.length - 1] : FRAMES[activeIndex];
+        say(active.line);
+
+        // Cross-fade the sentence at frame boundaries: its opacity dips to zero as
+        // a boundary nears and rises back after, and the content swap above lands
+        // exactly on a boundary (where the text is already invisible) — so one line
+        // dissolves into the next instead of snapping. The opening and closing
+        // lines don't fade against the page edges (Infinity skips that side).
+        const FADE = 0.012;   // scroll fraction over which the sentence fades on each side of a boundary
+        const distIn  = activeIndex === 0 ? Infinity : p - frameStart(active.id);
+        const distOut = active === FRAMES[FRAMES.length - 1] ? Infinity : active.end - p;
+        frame.style.opacity = smooth(Math.min(distIn, distOut) / FADE);
+
+        // The one ruler: spine fills with scroll; each frame tick lights as the
+        // fill reaches it; each chapter numeral lights once its span begins.
+        rail.style.setProperty('--rail', p);
+        FRAMES.forEach((f) => {
+          f.dot.style.setProperty('--on', smooth((p - frameStart(f.id)) / (f.end - frameStart(f.id))));
+          f.dot.classList.toggle('active', f === active);
+        });
+        CHAPTERS.forEach((c) => {
+          c.el.style.setProperty('--on', smooth((p - c.start) / 0.04));
+          c.el.classList.toggle('active', p >= c.start && p < c.end);
+        });
+      }
+
+      // === Drive render from scroll progress through the sticky track ===
+      function progress() {
+        const total = track.offsetHeight - window.innerHeight;
+        return total > 0 ? clamp(-track.getBoundingClientRect().top / total) : 0;
+      }
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { render(progress()); ticking = false; });
+      }
+
+      // Reduced motion: skip the choreography and show the resolved final state.
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        render(1);
+      } else {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        render(progress());
+      }
+    })();
+  </script>
+</body>
+</html>
