@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="267.69 88.5 38 38">
+<title>Spica — warm satin finish</title>
+<!-- Dot-only favicon. Center the five satin tiles, including their raised edges. -->
+<defs><filter id="shadow" x="-25%" y="-25%" width="160%" height="160%" color-interpolation-filters="sRGB">
+  <feGaussianBlur stdDeviation="0.19"/>
+</filter>
+<filter id="ceramic" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+  <feGaussianBlur in="SourceAlpha" stdDeviation="0.22" result="bump"/>
+  <feSpecularLighting in="bump" surfaceScale="1.15" specularConstant="0.35" specularExponent="32" lighting-color="#ffffff" result="shine">
+    <feDistantLight azimuth="225" elevation="50"/>
+  </feSpecularLighting>
+  <feComposite in="shine" in2="SourceAlpha" operator="in" result="shine"/>
+  <feComposite in="SourceGraphic" in2="shine" operator="arithmetic" k1="0" k2="1" k3="0.65" k4="0"/>
+</filter><clipPath id="clip0"><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z"/></clipPath>
+<linearGradient id="glaze0" gradientUnits="userSpaceOnUse" x1="282.93" y1="100.23" x2="289.85" y2="107.84">
+  <stop offset="0" stop-color="#fff8ea"/>
+  <stop offset="0.18" stop-color="#f3e8d3"/>
+  <stop offset="0.35" stop-color="#ecddc2"/>
+  <stop offset="0.44" stop-color="#f1e4cc"/>
+  <stop offset="0.53" stop-color="#f8eedb"/>
+  <stop offset="0.61" stop-color="#f6ebd6"/>
+  <stop offset="0.72" stop-color="#f3e8d3"/>
+  <stop offset="0.84" stop-color="#ecddc2"/>
+  <stop offset="1" stop-color="#cfb991"/>
+</linearGradient>
+<linearGradient id="bevel0" gradientUnits="userSpaceOnUse" x1="282.93" y1="100.23" x2="289.85" y2="107.84">
+  <stop offset="0" stop-color="#fffdf7"/>
+  <stop offset="0.24" stop-color="#fff9eb"/>
+  <stop offset="0.44" stop-color="#e3cfad"/>
+  <stop offset="0.55" stop-color="#f3e8d3"/>
+  <stop offset="0.70" stop-color="#e3cfad"/>
+  <stop offset="1" stop-color="#a98b60"/>
+</linearGradient>
+<radialGradient id="reflection0" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(285.00600000000003 101.9042) rotate(-25) scale(4.29040000000001 1.8263999999999998)">
+  <stop offset="0" stop-color="white" stop-opacity=".26"/>
+  <stop offset=".45" stop-color="white" stop-opacity=".11"/>
+  <stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient><clipPath id="clip1"><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z"/></clipPath>
+<linearGradient id="glaze1" gradientUnits="userSpaceOnUse" x1="282.39" y1="108.97" x2="290.67" y2="115.74">
+  <stop offset="0" stop-color="#fff8ea"/>
+  <stop offset="0.18" stop-color="#f3e8d3"/>
+  <stop offset="0.35" stop-color="#ecddc2"/>
+  <stop offset="0.44" stop-color="#f1e4cc"/>
+  <stop offset="0.53" stop-color="#f8eedb"/>
+  <stop offset="0.61" stop-color="#f6ebd6"/>
+  <stop offset="0.72" stop-color="#f3e8d3"/>
+  <stop offset="0.84" stop-color="#ecddc2"/>
+  <stop offset="1" stop-color="#cfb991"/>
+</linearGradient>
+<linearGradient id="bevel1" gradientUnits="userSpaceOnUse" x1="282.39" y1="108.97" x2="290.67" y2="115.74">
+  <stop offset="0" stop-color="#fffdf7"/>
+  <stop offset="0.24" stop-color="#fff9eb"/>
+  <stop offset="0.44" stop-color="#e3cfad"/>
+  <stop offset="0.55" stop-color="#f3e8d3"/>
+  <stop offset="0.70" stop-color="#e3cfad"/>
+  <stop offset="1" stop-color="#a98b60"/>
+</linearGradient>
+<radialGradient id="reflection1" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(284.874 110.4594) rotate(-25) scale(5.133600000000018 1.624799999999999)">
+  <stop offset="0" stop-color="white" stop-opacity=".26"/>
+  <stop offset=".45" stop-color="white" stop-opacity=".11"/>
+  <stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient><clipPath id="clip2"><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z"/></clipPath>
+<linearGradient id="glaze2" gradientUnits="userSpaceOnUse" x1="273.97" y1="101.03" x2="281.67" y2="107.87">
+  <stop offset="0" stop-color="#fff8ea"/>
+  <stop offset="0.18" stop-color="#f3e8d3"/>
+  <stop offset="0.35" stop-color="#ecddc2"/>
+  <stop offset="0.44" stop-color="#f1e4cc"/>
+  <stop offset="0.53" stop-color="#f8eedb"/>
+  <stop offset="0.61" stop-color="#f6ebd6"/>
+  <stop offset="0.72" stop-color="#f3e8d3"/>
+  <stop offset="0.84" stop-color="#ecddc2"/>
+  <stop offset="1" stop-color="#cfb991"/>
+</linearGradient>
+<linearGradient id="bevel2" gradientUnits="userSpaceOnUse" x1="273.97" y1="101.03" x2="281.67" y2="107.87">
+  <stop offset="0" stop-color="#fffdf7"/>
+  <stop offset="0.24" stop-color="#fff9eb"/>
+  <stop offset="0.44" stop-color="#e3cfad"/>
+  <stop offset="0.55" stop-color="#f3e8d3"/>
+  <stop offset="0.70" stop-color="#e3cfad"/>
+  <stop offset="1" stop-color="#a98b60"/>
+</linearGradient>
+<radialGradient id="reflection2" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(276.28000000000003 102.5348) rotate(-25) scale(4.773999999999993 1.6416000000000008)">
+  <stop offset="0" stop-color="white" stop-opacity=".26"/>
+  <stop offset=".45" stop-color="white" stop-opacity=".11"/>
+  <stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient><clipPath id="clip3"><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z"/></clipPath>
+<linearGradient id="glaze3" gradientUnits="userSpaceOnUse" x1="282.32" y1="90.5" x2="290.59" y2="98.85">
+  <stop offset="0" stop-color="#fff8ea"/>
+  <stop offset="0.18" stop-color="#f3e8d3"/>
+  <stop offset="0.35" stop-color="#ecddc2"/>
+  <stop offset="0.44" stop-color="#f1e4cc"/>
+  <stop offset="0.53" stop-color="#f8eedb"/>
+  <stop offset="0.61" stop-color="#f6ebd6"/>
+  <stop offset="0.72" stop-color="#f3e8d3"/>
+  <stop offset="0.84" stop-color="#ecddc2"/>
+  <stop offset="1" stop-color="#cfb991"/>
+</linearGradient>
+<linearGradient id="bevel3" gradientUnits="userSpaceOnUse" x1="282.32" y1="90.5" x2="290.59" y2="98.85">
+  <stop offset="0" stop-color="#fffdf7"/>
+  <stop offset="0.24" stop-color="#fff9eb"/>
+  <stop offset="0.44" stop-color="#e3cfad"/>
+  <stop offset="0.55" stop-color="#f3e8d3"/>
+  <stop offset="0.70" stop-color="#e3cfad"/>
+  <stop offset="1" stop-color="#a98b60"/>
+</linearGradient>
+<radialGradient id="reflection3" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(284.801 92.337) rotate(-25) scale(5.127399999999989 2.0039999999999987)">
+  <stop offset="0" stop-color="white" stop-opacity=".26"/>
+  <stop offset=".45" stop-color="white" stop-opacity=".11"/>
+  <stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient><clipPath id="clip4"><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z"/></clipPath>
+<linearGradient id="glaze4" gradientUnits="userSpaceOnUse" x1="291.0" y1="103.12" x2="299.41" y2="110.84">
+  <stop offset="0" stop-color="#fff8ea"/>
+  <stop offset="0.18" stop-color="#f3e8d3"/>
+  <stop offset="0.35" stop-color="#ecddc2"/>
+  <stop offset="0.44" stop-color="#f1e4cc"/>
+  <stop offset="0.53" stop-color="#f8eedb"/>
+  <stop offset="0.61" stop-color="#f6ebd6"/>
+  <stop offset="0.72" stop-color="#f3e8d3"/>
+  <stop offset="0.84" stop-color="#ecddc2"/>
+  <stop offset="1" stop-color="#cfb991"/>
+</linearGradient>
+<linearGradient id="bevel4" gradientUnits="userSpaceOnUse" x1="291.0" y1="103.12" x2="299.41" y2="110.84">
+  <stop offset="0" stop-color="#fffdf7"/>
+  <stop offset="0.24" stop-color="#fff9eb"/>
+  <stop offset="0.44" stop-color="#e3cfad"/>
+  <stop offset="0.55" stop-color="#f3e8d3"/>
+  <stop offset="0.70" stop-color="#e3cfad"/>
+  <stop offset="1" stop-color="#a98b60"/>
+</linearGradient>
+<radialGradient id="reflection4" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(293.523 104.81840000000001) rotate(-25) scale(5.214200000000015 1.8527999999999996)">
+  <stop offset="0" stop-color="white" stop-opacity=".26"/>
+  <stop offset=".45" stop-color="white" stop-opacity=".11"/>
+  <stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient></defs>
+<rect x="267.69" y="88.5" width="38" height="38" fill="#102344"/>
+<g id="spica-dot" transform="translate(-0.125 4.18)">
+<g data-tile="spica" transform="translate(0.0 0.0)">
+  <path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(.30 .46)" fill="#000817" opacity=".55" filter="url(#shadow)"/>
+  <path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.25 0.4)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.225 0.36)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.2 0.32)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.17500000000000002 0.28)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.15000000000000002 0.24)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.125 0.2)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.1 0.16)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.07500000000000001 0.12)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.05 0.08)" fill="url(#bevel0)"/><path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" transform="translate(0.025 0.04)" fill="url(#bevel0)"/>
+  <g filter="url(#ceramic)">
+    <path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" fill="url(#glaze0)"/>
+    <path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" fill="none" stroke="url(#bevel0)" stroke-width=".70" stroke-linejoin="round" clip-path="url(#clip0)"/>
+  </g>
+  <path d="M289.78 107.04L289.17 107.72L283.43 107.84L282.93 107.28L283.11 100.86L283.63 100.28L289.43 100.23L289.85 100.70Z" fill="url(#reflection0)"/>
+</g><g data-tile="spica" transform="translate(0.0 -0.1505859375)">
+  <path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(.30 .46)" fill="#000817" opacity=".55" filter="url(#shadow)"/>
+  <path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.25 0.4)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.225 0.36)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.2 0.32)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.17500000000000002 0.28)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.15000000000000002 0.24)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.125 0.2)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.1 0.16)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.07500000000000001 0.12)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.05 0.08)" fill="url(#bevel1)"/><path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" transform="translate(0.025 0.04)" fill="url(#bevel1)"/>
+  <g filter="url(#ceramic)">
+    <path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" fill="url(#glaze1)"/>
+    <path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" fill="none" stroke="url(#bevel1)" stroke-width=".70" stroke-linejoin="round" clip-path="url(#clip1)"/>
+  </g>
+  <path d="M290.67 115.10L290.15 115.55L283.22 115.74L282.39 115.07L282.67 109.71L283.39 109.08L289.69 108.97L290.04 109.25Z" fill="url(#reflection1)"/>
+</g><g data-tile="spica" transform="translate(0.1505859375 0.0)">
+  <path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(.30 .46)" fill="#000817" opacity=".55" filter="url(#shadow)"/>
+  <path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.25 0.4)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.225 0.36)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.2 0.32)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.17500000000000002 0.28)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.15000000000000002 0.24)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.125 0.2)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.1 0.16)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.07500000000000001 0.12)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.05 0.08)" fill="url(#bevel2)"/><path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" transform="translate(0.025 0.04)" fill="url(#bevel2)"/>
+  <g filter="url(#ceramic)">
+    <path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" fill="url(#glaze2)"/>
+    <path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" fill="none" stroke="url(#bevel2)" stroke-width=".70" stroke-linejoin="round" clip-path="url(#clip2)"/>
+  </g>
+  <path d="M281.48 107.49L281.21 107.73L274.75 107.87L273.97 107.14L274.38 101.39L274.72 101.10L280.93 101.03L281.67 101.73Z" fill="url(#reflection2)"/>
+</g><g data-tile="spica" transform="translate(0.0 0.1505859375)">
+  <path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(.30 .46)" fill="#000817" opacity=".55" filter="url(#shadow)"/>
+  <path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.25 0.4)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.225 0.36)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.2 0.32)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.17500000000000002 0.28)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.15000000000000002 0.24)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.125 0.2)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.1 0.16)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.07500000000000001 0.12)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.05 0.08)" fill="url(#bevel3)"/><path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" transform="translate(0.025 0.04)" fill="url(#bevel3)"/>
+  <g filter="url(#ceramic)">
+    <path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" fill="url(#glaze3)"/>
+    <path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" fill="none" stroke="url(#bevel3)" stroke-width=".70" stroke-linejoin="round" clip-path="url(#clip3)"/>
+  </g>
+  <path d="M290.07 98.36L289.65 98.82L283.30 98.85L282.91 98.42L282.32 91.01L282.79 90.50L289.94 90.56L290.59 91.27Z" fill="url(#reflection3)"/>
+</g><g data-tile="spica" transform="translate(-0.1505859375 0.0)">
+  <path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(.30 .46)" fill="#000817" opacity=".55" filter="url(#shadow)"/>
+  <path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.25 0.4)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.225 0.36)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.2 0.32)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.17500000000000002 0.28)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.15000000000000002 0.24)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.125 0.2)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.1 0.16)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.07500000000000001 0.12)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.05 0.08)" fill="url(#bevel4)"/><path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" transform="translate(0.025 0.04)" fill="url(#bevel4)"/>
+  <g filter="url(#ceramic)">
+    <path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" fill="url(#glaze4)"/>
+    <path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" fill="none" stroke="url(#bevel4)" stroke-width=".70" stroke-linejoin="round" clip-path="url(#clip4)"/>
+  </g>
+  <path d="M299.41 109.78L298.47 110.71L291.82 110.84L291.31 110.39L291.00 103.53L291.36 103.17L298.58 103.12L299.14 103.62Z" fill="url(#reflection4)"/>
+</g></g>
+</svg>
