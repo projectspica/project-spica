@@ -85,10 +85,12 @@ describe("Project Spica server", () => {
     expect((await response.arrayBuffer()).byteLength).toBeGreaterThan(0);
   });
 
-  test("links both satin favicon formats and serves the versioned URLs", async () => {
+  test("links both favicon formats and serves the versioned URLs", async () => {
     const html = await request("/").text();
     for (const extension of ["svg", "ico"]) {
-      const path = `/favicon.${extension}?v=satin-dot-3`;
+      // NOTE: [thought process] The version is bumped whenever the mark
+      // changes, because browsers cache a favicon far past a normal reload.
+      const path = `/favicon.${extension}?v=tessera-1`;
       expect(html).toContain(`href="${path}"`);
       expect(request(path).status).toBe(200);
     }
@@ -260,18 +262,26 @@ describe("Project Spica server", () => {
     expect(html).toContain('src="/images/spica-mosaic-night.webp"');
   });
 
-  test("anchors tiled Virgo to the dot of the title's i", async () => {
+  test("anchors the five-tile Spica star to the dot of the title's i", async () => {
     const html = await request("/").text();
     const css = await request("/styles.css").text();
+    const script = await request("/constellation.js").text();
     expect(html).toContain('Project Sp<span class="spica-letter">i<span class="spica-dot"></span></span>ca');
     expect(html).toContain('<script src="/constellation.js" type="module"></script>');
-    expect(html).toContain("Virgo constellation formed from tiles");
+    expect(script).toContain('<g class="spica-day-mark"></g><g class="night-star-dimming"></g><g class="spica-night-mark"></g>');
+    expect(css).toContain('.spica-night-mark, .night-star-dimming { visibility: hidden; }');
+    expect(css).toContain(':root[data-theme="dark"] .spica-night-mark,');
+    expect(css).toContain(':root[data-theme="dark"] .night-star-dimming { visibility: visible; }');
     expect(css).toContain('top: calc(0.3em - var(--title-drop, 0px));');
     expect(css).toMatch(/\.site-title\s*\{[^}]*top: var\(--title-drop, 0px\);/);
-    expect(css).toContain(':root[data-theme="dark"] .virgo-night-tiles { visibility: visible; }');
-    for (const removed of ["virgo-constellation", "constellation-lines", "constellation-stars", "spica-star"]) {
-      expect(html).not.toContain(removed);
+    expect(css).toMatch(/\.mosaic-tile-colors\s*\{[^}]*pointer-events: none;/);
+    // The star is selected from the mosaic, so no Virgo overlay comes back with it.
+    for (const removed of ["virgo", "constellation-lines", "constellation-stars", "spica-star"]) {
       expect(css).not.toContain(removed);
+      expect(script).not.toContain(removed);
+    }
+    for (const removed of ["virgo-constellation", "constellation-lines", "spica-star"]) {
+      expect(html).not.toContain(removed);
     }
   });
 
