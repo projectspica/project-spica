@@ -6,10 +6,19 @@ export const pages = new Map([
   ["/research", "Research"],
   ["/people", "People"],
 ]);
+// Article bodies are separate from the four-section template, but share its shell.
+export const articles = new Map([
+  ["/research/localizing-memorization", {
+    title: "Localizing latent mechanisms in weight space by spiking the training data",
+    description: "Localizing latent mechanisms in weight space by spiking the training data. A report by Johnny, Gustavo, Jerry, Yanai, and Robin, September 2026.",
+    file: new URL("./articles/localizing-memorization.html", import.meta.url),
+    parent: "/research",
+  }],
+]);
 const index = Bun.file(new URL("./public/index.html", import.meta.url));
 export const assets = new Map([
   ["/", index],
-  ...[...pages.keys()].map(path => [path, index] as const),
+  ...[...pages.keys(), ...articles.keys()].map(path => [path, index] as const),
   ["/styles.css", Bun.file(new URL("./public/styles.css", import.meta.url))],
   ["/theme.js", Bun.file(new URL("./public/theme.js", import.meta.url))],
   ["/audio/minecraft-lever.ogg", Bun.file(new URL("./public/audio/minecraft-lever.ogg", import.meta.url))],
@@ -37,6 +46,8 @@ export const assets = new Map([
   ["/og.png", Bun.file(new URL("./public/og.png", import.meta.url))],
   ["/fonts/amiri-latin-400.woff2", Bun.file(new URL("./public/fonts/amiri-latin-400.woff2", import.meta.url))],
   ["/fonts/lato-latin-400.woff2", Bun.file(new URL("./public/fonts/lato-latin-400.woff2", import.meta.url))],
+  ["/fonts/stix-two-math.woff2", Bun.file(new URL("./public/fonts/stix-two-math.woff2", import.meta.url))],
+  ["/fonts/stix-two-OFL.txt", Bun.file(new URL("./public/fonts/stix-two-OFL.txt", import.meta.url))],
 ]);
 
 export function handleRequest(request: Request): Response {
@@ -61,7 +72,11 @@ export function handleRequest(request: Request): Response {
     return Response.redirect(url.href, 301);
   }
 
-  const asset = assets.get(url.pathname);
+  // Accept published directory URLs on the dev server too, including fetches
+  // made by the shared-shell navigation.
+  const route = url.pathname.replace(/\/$/, "");
+  const article = articles.get(route);
+  const asset = assets.get(article || pages.has(route) ? route : url.pathname);
   if (!asset) {
     return new Response(request.method === "HEAD" ? null : "Not found", { status: 404 });
   }
@@ -80,7 +95,7 @@ export function handleRequest(request: Request): Response {
   if (request.method === "HEAD" || asset !== index) return response;
 
   // Render the requested page immediately, including without JavaScript.
-  const pagePath = url.pathname === "/" ? "/mission" : url.pathname;
+  const pagePath = url.pathname === "/" ? "/mission" : route;
   return new HTMLRewriter()
     .on(".mosaic-picture", {
       element(element) {
@@ -94,13 +109,35 @@ export function handleRequest(request: Request): Response {
     })
     .on("title", {
       element(element) {
-        element.setInnerContent(`${pages.get(pagePath)} — Project Spica`);
+        element.setInnerContent(`${article?.title ?? pages.get(pagePath)} — Project Spica`);
+      },
+    })
+    .on('meta[name="description"]', {
+      element(element) {
+        if (article) element.setAttribute("content", article.description);
+      },
+    })
+    .on(".site-title", {
+      element(element) {
+        // The report title is the article page's only h1.
+        if (article) {
+          element.tagName = "div";
+          element.setAttribute("role", "img");
+        }
       },
     })
     .on(".section-nav a", {
       element(element) {
-        if (element.getAttribute("href") === pagePath) element.setAttribute("aria-current", "page");
-        else element.removeAttribute("aria-current");
+        if (element.getAttribute("href") === (article?.parent ?? pagePath)) {
+          element.setAttribute("aria-current", article ? "location" : "page");
+        } else element.removeAttribute("aria-current");
+      },
+    })
+    .on("#main", {
+      async element(element) {
+        element.setAttribute("data-page", pagePath);
+        element.setAttribute("data-routes", JSON.stringify([...pages.keys(), ...articles.keys()]));
+        if (article) element.setInnerContent(await Bun.file(article.file).text(), { html: true });
       },
     })
     .on("#main > section", {
