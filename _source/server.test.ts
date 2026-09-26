@@ -51,10 +51,11 @@ describe("Project Spica server", () => {
     const links = [
       ["worst case", "https://ai-2027.com/"],
       ["answered deceptively", "https://arxiv.org/abs/2406.07358"],
-      ["spiking", "/research/localizing-memorization/"],
+      ["urgently", "https://www.alignmentforum.org/posts/eRmzz8J8Qkzqvzrgg/astra-can-do-a-concerning-amount-with-no-chain-of-thought"],
+      ["spiking", "/research/phd-thesis.pdf"],
       ["auditing privacy leakage", "https://arxiv.org/abs/2305.08846"],
       ["Hubble models", "https://arxiv.org/abs/2510.19811"],
-      ["influence functions to identify the weight space direction responsible for memorization", "/research/localizing-memorization.pdf"],
+      ["influence functions to identify the weight space direction responsible for memorization", "/research/localizing-memorization/"],
       ["roadmap", "/roadmap"],
       ["OpenAI hack on Hugging Face", "https://openai.com/index/hugging-face-incident-and-the-road-ahead/"],
     ];
@@ -127,7 +128,8 @@ describe("Project Spica server", () => {
     const roadmap = html.split('id="roadmap" aria-label="Roadmap">')[1].split("</section>")[0];
     const blocks = [...roadmap.matchAll(/<(p|li)>([^<]*)<\/\1>/g)].map(([, tag, text]) => [tag, text.replace(/\s+/g, " ")]);
     expect(blocks).toEqual([
-      ["p", "Imagine that you are a frontier developer beginning RL on a new agent. In the world where we succeed, you download the open spiking protocol hosted by Project Spica, which contains examples you randomly spike into training to localize evaluation awareness and deception. You estimate directions in weight space for these mechanisms with our open source tools and it produces several efficient monitors for RL trajectories. During a rollout, the agent realizes that benchmark data is hosted on Hugging Face and finds a misconfigured route out of its sandbox to retrieve the answers. Before the model has the chance to act on this exploit, a spiking based detector flags the trajectory as aligned with evaluation awareness. The rollout is halted, removed from the backprop update and an alert for human oversight is triggered."],
+      ["p", "Imagine that you are a frontier developer beginning to post-train your agent. In the world where we succeed, you download the open spiking protocol hosted by Project Spica, which contains examples you randomly spike into training to localize latent mechanisms like evaluation awareness and deception. Our open source tools estimate directions in weight space for these mechanisms and produce multiple efficient monitors that plug into your RL infrastructure."],
+      ["p", "During a rollout, an agent realizes it’s being tested on benchmark data whose answers are hosted on Hugging Face. It finds a misconfigured route out of its sandbox to retrieve the answers, but before the model has the chance to act on this exploit, a spiking based detector flags the trajectory as aligned with evaluation awareness. The rollout is halted, the trajectory is excluded from the update, and an alert for human oversight is triggered."],
       ["p", "Here is our planned work to make this future a reality:"],
       ["li", "(Near term) Generalizing spiking to other latent mechanisms like deception and eval awareness. Studying new mechanisms will require us to develop new model organisms spiked with relevant canaries. Like Hubble, the model organisms will be released as open source artifacts for the broader scientific community."],
       ["li", "(Near term) Improve the efficiency of latent mechanism detection and suppression so they are compatible with inference/RL infrastructure. Our results show that gradients provide the best information and we will need to find ways to efficiently approximate them."],
