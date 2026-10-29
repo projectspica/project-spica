@@ -16,6 +16,12 @@ export const articles = new Map([
   }],
 ]);
 const index = Bun.file(new URL("./public/index.html", import.meta.url));
+// Short shareable links, served as redirects by both the dev server and the static build.
+export const shortLinks = new Map([
+  ["/research/tracing-deception", "/research/deception-tracers-proposal.pdf"],
+  ["/research/tracing-deception-bluedot", "/research/deception-tracers-proposal-bluedot.pdf"],
+]);
+
 export const assets = new Map([
   ["/", index],
   ...[...pages.keys(), ...articles.keys()].map(path => [path, index] as const),
@@ -36,6 +42,7 @@ export const assets = new Map([
   ["/research/tracing-memorization.pdf", Bun.file(new URL("./public/research/tracing-memorization.pdf", import.meta.url))],
   ["/research/phd-thesis.pdf", Bun.file(new URL("./public/research/phd-thesis.pdf", import.meta.url))],
   ["/research/deception-tracers-proposal.pdf", Bun.file(new URL("./public/research/deception-tracers-proposal.pdf", import.meta.url))],
+  ["/research/deception-tracers-proposal-bluedot.pdf", Bun.file(new URL("./public/research/deception-tracers-proposal-bluedot.pdf", import.meta.url))],
   ["/images/spica-mosaic.webp", Bun.file(new URL("./public/images/spica-mosaic.webp", import.meta.url))],
   ["/images/spica-mosaic@2x.webp", Bun.file(new URL("./public/images/spica-mosaic@2x.webp", import.meta.url))],
   ["/images/spica-mosaic-night.webp", Bun.file(new URL("./public/images/spica-mosaic-night.webp", import.meta.url))],
@@ -63,10 +70,9 @@ export function handleRequest(request: Request): Response {
     url.pathname = "/mission";
     return Response.redirect(url.href, 301);
   }
-  // Short shareable link to the deception tracers proposal.
-  if (url.pathname.replace(/\/$/, "") === "/research/tracing-deception") {
-    return Response.redirect(new URL("/research/deception-tracers-proposal.pdf", url).href, 302);
-  }
+  // Short shareable links to the deception tracers proposals.
+  const shortLink = shortLinks.get(url.pathname.replace(/\/$/, ""));
+  if (shortLink) return Response.redirect(new URL(shortLink, url).href, 302);
   const requestedLegacyPage = url.searchParams.get("page");
   const legacyPage = requestedLegacyPage === "about" ? "mission" : requestedLegacyPage;
   if (url.pathname === "/" && legacyPage && pages.has(`/${legacyPage}`)) {

@@ -1,7 +1,7 @@
 import { cp, mkdir, readdir, rm } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
-import { articles, assets, handleRequest, pages } from "../server";
+import { articles, assets, handleRequest, pages, shortLinks } from "../server";
 
 export const root = fileURLToPath(new URL("../../", import.meta.url));
 export const output = join(root, "_build");
@@ -72,15 +72,16 @@ export async function buildSite(directory = output) {
 <script src="/legacy.js"></script></head>
 <body><p>This page has moved to <a href="/mission/">Mission</a>.</p></body></html>\n`);
 
-  // Short shareable link to the deception tracers proposal PDF.
-  await Bun.write(join(directory, "research/tracing-deception/index.html"), `<!doctype html>
+  for (const [path, pdf] of shortLinks) {
+    await Bun.write(join(directory, path.slice(1), "index.html"), `<!doctype html>
 <html lang="en"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
 <title>Deception tracers proposal — Project Spica</title>
-<meta http-equiv="refresh" content="0; url=/research/deception-tracers-proposal.pdf" />
+<meta http-equiv="refresh" content="0; url=${pdf}" />
 </head>
-<body><p>Opening the <a href="/research/deception-tracers-proposal.pdf">deception tracers proposal</a>.</p></body></html>\n`);
+<body><p>Opening the <a href="${pdf}">deception tracers proposal</a>.</p></body></html>\n`);
+  }
 
   await Bun.write(join(directory, "404.html"), `<!doctype html>
 <html lang="en" data-theme="dark"><head><meta charset="utf-8" />
