@@ -6,7 +6,7 @@ tile data re-derived, so the two icons cannot drift apart.
 import io, re, struct
 from PIL import Image, ImageDraw
 
-svg = open('favicon.svg').read()
+svg = open('_source/public/favicon.svg').read()
 vx, vy, vw, vh = (float(n) for n in re.search(r'viewBox="([^"]+)"', svg).group(1).split())
 background = re.search(r'<rect[^>]*fill="(#[0-9a-f]{6})"', svg).group(1)
 stroke = re.search(r'<g stroke="(#[0-9a-f]{6})" stroke-width="([0-9.]+)"', svg)
@@ -62,7 +62,6 @@ for size, data in frames:
     body += data
     offset += len(data)
 
-open('favicon.ico', 'wb').write(header + directory + body)
 open('_source/public/favicon.ico', 'wb').write(header + directory + body)
 print('frames:', ', '.join(f'{s}x{s} ({len(d)}B)' for s, d in frames))
 print('total:', len(header + directory + body), 'bytes (was 32038)')

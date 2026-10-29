@@ -1,7 +1,7 @@
 name: Check website
 on:
   push:
-    branches: [main, replace-with-mosaic-site]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:

@@ -36,8 +36,6 @@ export const assets = new Map([
   ["/research/tracing-memorization.pdf", Bun.file(new URL("./public/research/tracing-memorization.pdf", import.meta.url))],
   ["/research/phd-thesis.pdf", Bun.file(new URL("./public/research/phd-thesis.pdf", import.meta.url))],
   ["/research/deception-tracers-proposal.pdf", Bun.file(new URL("./public/research/deception-tracers-proposal.pdf", import.meta.url))],
-  ["/images/spica-mosaic-night.svg", Bun.file(new URL("./public/images/spica-mosaic-night.svg", import.meta.url))],
-  ["/images/spica-mosaic.svg", Bun.file(new URL("./public/images/spica-mosaic.svg", import.meta.url))],
   ["/images/spica-mosaic.webp", Bun.file(new URL("./public/images/spica-mosaic.webp", import.meta.url))],
   ["/images/spica-mosaic@2x.webp", Bun.file(new URL("./public/images/spica-mosaic@2x.webp", import.meta.url))],
   ["/images/spica-mosaic-night.webp", Bun.file(new URL("./public/images/spica-mosaic-night.webp", import.meta.url))],
